@@ -3,8 +3,7 @@ import {grey} from "@material-ui/core/colors";
 
 export const useStyles = makeStyles(theme => ({
     root: {
-        borderBottom: "1px solid",
-        borderColor: grey[500],
+        borderBottom: `1px solid ${grey[300]}`,
         display: "flex",
         width: "100%",
         flexDirection: "row",

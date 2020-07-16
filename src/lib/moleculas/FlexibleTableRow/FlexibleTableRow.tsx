@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
+import FlexibleTableCell from "../FlexibleTableCell";
 
 type FlexibleTableRowProps = {
     systemSizes: any,
@@ -38,7 +39,8 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
         <div className={classes.root}>
             {children.map((cell: any) => {
                 let newProps: any = {};
-                if (false) { //TODO: add check for instance of FlexibleTableCell!
+                if (cell?.type !== FlexibleTableCell) {
+                    console.error("FlexibleTable: unexpected children, all children must be FlexibleTableCell type");
                     return null;
                 }
                 try {

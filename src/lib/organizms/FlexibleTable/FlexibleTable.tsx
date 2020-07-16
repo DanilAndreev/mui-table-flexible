@@ -53,7 +53,7 @@ export default function FlexibleTable(props: any) {
                 <div>
                     {childrenArray && childrenArray.map((row: any, index: number) => {
                         let newProps: any = {};
-                        if (false) { //TODO: add check for instance of FlexibleTableRow!
+                        if (row?.type !== FlexibleTableRow) {
                             return null;
                         }
                         try {
