@@ -6,8 +6,10 @@ export default function FlexibleTable(props: any) {
     const {
         head,
         columns,
-        children,
+//        children,
     } = props;
+    const childrenArray = props.children && Array.isArray(props.children) ? props.children : [props.children];
+
     const classes = useStyles();
     /**
      * sizes - object, created to store each column width.
@@ -32,6 +34,7 @@ export default function FlexibleTable(props: any) {
     }, []);
 
     // const width = Object.keys(sizes).reduce((total, current) => total + (sizes[current] || 100), 0);
+
 
     return (
         <div className={classes.root} ref={container}>
@@ -58,17 +61,20 @@ export default function FlexibleTable(props: any) {
                     </div>
                 </div>
                 <div>
-                    {children && children.map((child: any) => {
+                    {childrenArray && childrenArray.map((row: any, index: number) => {
                         let newProps: any = {};
+                        if (false) { //TODO: add check for instance of FlexibleTableRow!
+                            return null;
+                        }
                         try {
                             newProps = {
-                                systemWidth: sizes[child.props.name],
-                                systemContainer: null,
+                                systemSizes: sizes,
+                                key: `flexible-table-row-${index}`,
                             }
                         } catch (error) {
-                            console.error("FlexibleTable: unexpected child: ", child, error);
+                            console.error("FlexibleTable: unexpected child: ", row, error);
                         } finally {
-                            return React.cloneElement(child, newProps);
+                            return React.cloneElement(row, newProps);
                         }
                     })}
                 </div>

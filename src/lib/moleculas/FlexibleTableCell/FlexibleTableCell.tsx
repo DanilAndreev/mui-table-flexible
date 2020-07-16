@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 
 export default function FlexibleTableCell(props: any) {
-    const classes = useStyles();
+    const classes = {...useStyles(), ...props.classes};
     const {
         defaultWidth = 100,
         width,
@@ -76,8 +76,6 @@ export default function FlexibleTableCell(props: any) {
     function handleResizeMouseMove(event: any) {
         const prevWidth = width || resizeData.width;
         const containerScroll = systemContainer.current && systemContainer.current.scrollLeft;
-        console.log('scroll=', containerScroll);
-        console.log(mouseX.current - event.clientX);
         const newWidth = prevWidth - (mouseX.current - event.clientX) - containerScroll;
 
         if (onResize && typeof onResize === "function") {
@@ -92,7 +90,7 @@ export default function FlexibleTableCell(props: any) {
     }
 
     return (
-        <div style={{width: width || systemWidth || resizeData.width}} className={classes.root}>
+        <div style={{...props.style, width: width || systemWidth || resizeData.width}} className={classes.root}>
             <div className={classes.cellContainer}>
                 <div className={classes.content}>
                     {children}
