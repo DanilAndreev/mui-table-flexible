@@ -13,12 +13,6 @@ export const useStyles = makeStyles(theme => ({
         left: 0,
         top: 0,
     },
-    row: {
-        display: "flex",
-        width: "100%",
-        flexDirection: "row",
-        alignItems: "stretch",
-    },
     head: {
 
     },

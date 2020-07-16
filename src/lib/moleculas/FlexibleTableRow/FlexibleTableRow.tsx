@@ -2,7 +2,14 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 
-export default function FlexibleTableRow(props: any) {
+type FlexibleTableRowProps = {
+    systemSizes: any,
+    systemContainer: any,
+    onSystemResize(name: string, width: number): void,
+    children: any,
+}
+
+export default function FlexibleTableRow(props: FlexibleTableRowProps) {
     const {
         children,
         /**
@@ -17,6 +24,13 @@ export default function FlexibleTableRow(props: any) {
          * @ignore
          */
         systemContainer,
+        /**
+         * onSystemResize - function, called when custom onResize not defined. Used with native FlexibleTable.
+         * @param {string} name column name
+         * @param {number} width width in pixels
+         * @ignore
+         */
+        onSystemResize,
     } = props;
     const classes = useStyles();
 
@@ -31,6 +45,7 @@ export default function FlexibleTableRow(props: any) {
                     newProps = {
                         systemWidth: systemSizes[cell.props.name],
                         systemContainer: systemContainer || null,
+                        onSystemResize: onSystemResize,
                         key: `flexible-table-cell-${cell.props.name}`,
                     }
                 } catch (error) {
@@ -44,5 +59,7 @@ export default function FlexibleTableRow(props: any) {
 }
 
 FlexibleTableRow.propTypes = {
-
+    systemSizes: PropTypes.object,
+    systemContainer: PropTypes.any,
+    onSystemResize: PropTypes.func,
 }

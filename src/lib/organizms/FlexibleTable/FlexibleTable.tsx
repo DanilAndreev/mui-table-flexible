@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
+import FlexibleTableRow from "../../moleculas/FlexibleTableRow";
 
 export default function FlexibleTable(props: any) {
     const {
@@ -35,30 +36,19 @@ export default function FlexibleTable(props: any) {
 
     // const width = Object.keys(sizes).reduce((total, current) => total + (sizes[current] || 100), 0);
 
-
     return (
         <div className={classes.root} ref={container}>
             <div className={classes.tableContainer}>
                 <div className={classes.head}>
-                    <div className={classes.row}>
-                        {columns && columns.map((column: any) => {
-                            let newProps: any = {};
-                            try {
-                                newProps = {
-                                    onSystemResize: (name: string, width: number) => {
-                                        setSizes((prev: any) => ({...prev, [name]: width}))
-                                    },
-                                    systemWidth: sizes[column.props.name],
-                                    key: `${column.props.name}-column`,
-                                    systemContainer: container,
-                                }
-                            } catch (error) {
-                                console.error("FlexibleTable: unexpected column: ", column, error);
-                            } finally {
-                                return React.cloneElement(column, newProps);
-                            }
-                        })}
-                    </div>
+                    <FlexibleTableRow
+                        onSystemResize={(name: string, width: number) : void => {
+                            setSizes((prev: any) => ({...prev, [name]: width}))
+                        }}
+                        systemSizes={sizes}
+                        systemContainer={container}
+                    >
+                        {columns}
+                    </FlexibleTableRow>
                 </div>
                 <div>
                     {childrenArray && childrenArray.map((row: any, index: number) => {
