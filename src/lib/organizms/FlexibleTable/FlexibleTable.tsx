@@ -47,7 +47,9 @@ export default function FlexibleTable(props: any) {
                         systemSizes={sizes}
                         systemContainer={container}
                     >
-                        {columns}
+                        {columns.map((column: any, index: number) => {
+                            return React.cloneElement(column, {key: `flexible-table-column-${index}`});
+                        })}
                     </FlexibleTableRow>
                 </div>
                 <div>

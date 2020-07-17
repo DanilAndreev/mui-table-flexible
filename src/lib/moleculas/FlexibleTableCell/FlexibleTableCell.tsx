@@ -127,18 +127,23 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     function handleResizeMouseMove(event: any) {
         const prevWidth = width || resizeData.width;
         const containerScroll = systemContainer.current && systemContainer.current.scrollLeft;
-        const newWidth = prevWidth - (mouseX.current - event.clientX) - containerScroll;
+        const newWidth = prevWidth - (mouseX.current - event.clientX)// - containerScroll;
 
         if (onResize && typeof onResize === "function") {
-            setResizeData(prev => ({...prev, mouseX: event.clientX}));
+//            setResizeData(prev => ({...prev, mouseX: event.clientX}));
+            mouseX.current = event.clientX;
             onResize(name, newWidth);
         } else if (onSystemResize && typeof onSystemResize === "function") {
-            setResizeData(prev => ({...prev, mouseX: event.clientX}));
+//            setResizeData(prev => ({...prev, mouseX: event.clientX}));
+            mouseX.current = event.clientX;
             onSystemResize(name, newWidth);
         } else {
             setResizeData(prev => ({width: newWidth, mouseX: event.clientX}));
+            mouseX.current = event.clientX;
         }
     }
+
+    mouseX.current && console.log(mouseX.current);
 
     return (
         <div
@@ -147,7 +152,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         >
             <div className={classes.cellContainer} onClick={onClick}>
                 <div className={classes.content}>
-                    {children}
+                    {systemWidth} {children}
                 </div>
                 {systemContainer !== null &&
                 <div
