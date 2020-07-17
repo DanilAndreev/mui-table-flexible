@@ -2,41 +2,53 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 import FlexibleTableCell from "../FlexibleTableCell";
+import clsx from "clsx";
 
 type FlexibleTableRowProps = {
-    systemSizes: any,
-    systemContainer: any,
-    onSystemResize(name: string, width: number): void,
-    children: any,
+    /**
+     * button - if true, row will be clickable.
+     * @type: {boolean}
+     */
+    button?: boolean,
+    /**
+     * systemSizes - object with width information, controlled by native FlexibleTable.
+     * @type {object}
+     * @ignore
+     */
+    systemSizes?: any,
+    /**
+     * systemContainer - ref to element, which has scroll and contains table
+     * @type React.MutableRefObject<HTMLDivElement>
+     * @ignore
+     */
+    systemContainer?: any,
+    /**
+     * onSystemResize - function, called when custom onResize not defined. Used with native FlexibleTable.
+     * @param {string} name column name
+     * @param {number} width width in pixels
+     * @ignore
+     */
+    onSystemResize?(name: string, width: number): void,
+    children?: any,
 }
 
 export default function FlexibleTableRow(props: FlexibleTableRowProps) {
     const {
+        button = false,
         children,
-        /**
-         * systemSizes - object with width information, controlled by native FlexibleTable.
-         * @type {object}
-         * @ignore
-         */
         systemSizes,
-        /**
-         * systemContainer - ref to element, which has scroll and contains table
-         * @type React.MutableRefObject<> TODO: add type to template
-         * @ignore
-         */
         systemContainer,
-        /**
-         * onSystemResize - function, called when custom onResize not defined. Used with native FlexibleTable.
-         * @param {string} name column name
-         * @param {number} width width in pixels
-         * @ignore
-         */
         onSystemResize,
     } = props;
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div
+            className={clsx(
+                classes.root,
+                button && classes.button,
+            )}
+        >
             {children.map((cell: any) => {
                 let newProps: any = {};
                 if (cell?.type !== FlexibleTableCell) {
@@ -61,6 +73,7 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
 }
 
 FlexibleTableRow.propTypes = {
+    button: PropTypes.bool,
     systemSizes: PropTypes.object,
     systemContainer: PropTypes.any,
     onSystemResize: PropTypes.func,

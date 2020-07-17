@@ -28,19 +28,45 @@ export default function Example() {
                             <FlexibleTableCell name={'old'}>Old 1</FlexibleTableCell>
                             <FlexibleTableCell name={'friend'}>Friend 1</FlexibleTableCell>
                         </FlexibleTableRow>
-                        <FlexibleTableRow>
+                        <FlexibleTableRow button>
                             <FlexibleTableCell name={'hello'}>Hello 2</FlexibleTableCell>
                             <FlexibleTableCell name={'darkness'}>Darkness 2 </FlexibleTableCell>
                             <FlexibleTableCell name={'my'}>My 2</FlexibleTableCell>
                             <FlexibleTableCell name={'old'}>Old 2</FlexibleTableCell>
                             <FlexibleTableCell name={'friend'}>Friend 2</FlexibleTableCell>
                         </FlexibleTableRow>
-                        <FlexibleTableRow>
+                        <FlexibleTableRow button>
                             <FlexibleTableCell name={'hello'}>Hello 3</FlexibleTableCell>
                             <FlexibleTableCell name={'darkness'} style={{backgroundColor: `#f00`}}>Darkness 3 <br/> lol <br/> kek</FlexibleTableCell>
                             <FlexibleTableCell name={'my'}>My 3</FlexibleTableCell>
                             <FlexibleTableCell name={'old'} style={{backgroundColor: `#0f0`}}>Old 3</FlexibleTableCell>
-                            <FlexibleTableCell name={'friend'}>Friend 3</FlexibleTableCell>
+                            <FlexibleTableCell name={'friend'}>
+                                <FlexibleTable
+                                    columns={columns}
+                                >
+                                    <FlexibleTableRow>
+                                        <FlexibleTableCell name={'hello'}>Hello 1</FlexibleTableCell>
+                                        <FlexibleTableCell name={'darkness'}>Darkness 1 </FlexibleTableCell>
+                                        <FlexibleTableCell name={'my'}>My 1</FlexibleTableCell>
+                                        <FlexibleTableCell name={'old'}>Old 1</FlexibleTableCell>
+                                        <FlexibleTableCell name={'friend'}>Friend 1</FlexibleTableCell>
+                                    </FlexibleTableRow>
+                                    <FlexibleTableRow button>
+                                        <FlexibleTableCell name={'hello'}>Hello 2</FlexibleTableCell>
+                                        <FlexibleTableCell name={'darkness'}>Darkness 2 </FlexibleTableCell>
+                                        <FlexibleTableCell name={'my'}>My 2</FlexibleTableCell>
+                                        <FlexibleTableCell name={'old'}>Old 2</FlexibleTableCell>
+                                        <FlexibleTableCell name={'friend'}>Friend 2</FlexibleTableCell>
+                                    </FlexibleTableRow>
+                                    <FlexibleTableRow button>
+                                        <FlexibleTableCell name={'hello'}>Hello 3</FlexibleTableCell>
+                                        <FlexibleTableCell name={'darkness'} style={{backgroundColor: `#f00`}}>Darkness 3 <br/> lol <br/> kek</FlexibleTableCell>
+                                        <FlexibleTableCell name={'my'}>My 3</FlexibleTableCell>
+                                        <FlexibleTableCell name={'old'} style={{backgroundColor: `#0f0`}}>Old 3</FlexibleTableCell>
+                                        <FlexibleTableCell name={'friend'}>Friend 3</FlexibleTableCell>
+                                    </FlexibleTableRow>
+                                </FlexibleTable>
+                            </FlexibleTableCell>
                         </FlexibleTableRow>
                     </FlexibleTable>
                 </Paper>

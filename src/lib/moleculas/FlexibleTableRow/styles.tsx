@@ -8,5 +8,13 @@ export const useStyles = makeStyles(theme => ({
         width: "100%",
         flexDirection: "row",
         alignItems: "stretch",
-    }
+    },
+    button: {
+        "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.08)",
+        },
+        "&:active": {
+            backgroundColor: "rgba(0,0,0,0.1)",
+        },
+    },
 }));

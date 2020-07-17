@@ -2,32 +2,83 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 
-export default function FlexibleTableCell(props: any) {
+type FlexibleTableCellProps = {
+    /**
+     * name - the name of the columns, used as key.
+     * @type: {string}
+     */
+    name: string,
+    /**
+     * style - styles of component
+     * @type: {object}
+     */
+    style?: any,
+    /**
+     * classes - user defined object with classes.
+     * @type: {object}
+     * @see For more information see [MaterialUI classes overriding](https://material-ui.com/customization/components/#overriding-styles-with-classes)
+     */
+    classes?: any,
+    /**
+     * default width - the initial width of cell
+     * @type {number}
+     */
+    defaultWidth?: number,
+    /**
+     * width - width of the cell, if you want control it by yourself.
+     * @type: {number}
+     */
+    width?: number,
+    /**
+     * onSystemResize - function, called when cell resizes. If not defined - FlexibleTable will provide this information.
+     * @param {string} name column name
+     * @param {number} width width in pixels
+     */
+    onResize?(name: string, width: number): void,
+    /**
+     * button - if true, row will be clickable.
+     * @type: {boolean}
+     */
+    button?: boolean,
+    /**
+     * onClick - callback, called on click event.
+     * @param {Event} event
+     */
+    onClick?(event: Object): void,
+    /**
+     * onSystemResize - function, called when custom onResize not defined. Used with native FlexibleTable.
+     * @param {string} name column name
+     * @param {number} width width in pixels
+     * @ignore
+     */
+    onSystemResize?(name: string, width: number): void,
+    /**
+     * systemWidth - width, controlled by native FlexibleTable.
+     * @type {number}
+     * @ignore
+     */
+    systemWidth?: number,
+    /**
+     * systemContainer - ref to element, which has scroll and contains table
+     * @type React.MutableRefObject<HTMLDivElement>
+     * @ignore
+     */
+    systemContainer?: any,
+    children?: any,
+}
+
+export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     const classes = {...useStyles(), ...props.classes};
     const {
         defaultWidth = 100,
         width,
         onResize,
+        button = false,
+        onClick,
         children,
         name,
-        /**
-         * onSystemResize - function, called when custom onResize not defined. Used with native FlexibleTable.
-         * @param {string} name column name
-         * @param {number} width width in pixels
-         * @ignore
-         */
         onSystemResize,
-        /**
-         * systemWidth - width, controlled by native FlexibleTable.
-         * @type {number}
-         * @ignore
-         */
         systemWidth,
-        /**
-         * systemContainer - ref to element, which has scroll and contains table
-         * @type React.MutableRefObject<> TODO: add type to template
-         * @ignore
-         */
         systemContainer,
     } = props;
     const [resizeData, setResizeData] = React.useState({
@@ -90,8 +141,11 @@ export default function FlexibleTableCell(props: any) {
     }
 
     return (
-        <div style={{...props.style, width: width || systemWidth || resizeData.width}} className={classes.root}>
-            <div className={classes.cellContainer}>
+        <div
+            style={{...props.style, width: width || systemWidth || resizeData.width}}
+            className={classes.root}
+        >
+            <div className={classes.cellContainer} onClick={onClick}>
                 <div className={classes.content}>
                     {children}
                 </div>
