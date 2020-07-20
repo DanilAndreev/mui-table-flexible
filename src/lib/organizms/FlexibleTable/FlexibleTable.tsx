@@ -3,11 +3,24 @@ import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 import FlexibleTableRow from "../../moleculas/FlexibleTableRow";
 
-export default function FlexibleTable(props: any) {
+export type FlexibleTableProps = {
+    /**
+     * head - jsx components to be pasted in table head.
+     * @type {React.Component}
+     */
+    head?: any,
+    /**
+     * columns - array of elements to configure table layout.
+     * @type {array}
+     */
+    columns: any[], //TODO: change to component type
+    children?: any,
+}
+
+export default function FlexibleTable(props: FlexibleTableProps) {
     const {
         head,
         columns,
-//        children,
     } = props;
     const childrenArray = props.children && Array.isArray(props.children) ? props.children : [props.children];
 

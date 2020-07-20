@@ -4,7 +4,7 @@ import {useStyles} from "./styles";
 import FlexibleTableCell from "../FlexibleTableCell";
 import clsx from "clsx";
 
-type FlexibleTableRowProps = {
+export type FlexibleTableRowProps = {
     /**
      * button - if true, row will be clickable.
      * @type: {boolean}
@@ -29,6 +29,10 @@ type FlexibleTableRowProps = {
      * @ignore
      */
     onSystemResize?(name: string, width: number): void,
+    /**
+     * The content of element
+     * @type: {any}
+     */
     children?: any,
 }
 

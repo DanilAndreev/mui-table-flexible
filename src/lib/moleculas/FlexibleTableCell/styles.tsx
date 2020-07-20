@@ -8,9 +8,15 @@ export const useStyles = makeStyles(theme => ({
         height: "100%",
     },
     handle: {
-        width: "4px",
-        backgroundColor: grey[500],
+        width: "8px",
+        backgroundColor: grey[200],
         cursor: "col-resize",
+        "&:hover": {
+            backgroundColor: grey[400],
+        },
+        "&:active": {
+            backgroundColor: grey[500],
+        },
     },
     content: {
         flexGrow: 1,

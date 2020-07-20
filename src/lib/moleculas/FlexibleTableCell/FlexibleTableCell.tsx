@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 
-type FlexibleTableCellProps = {
+export type FlexibleTableCellProps = {
     /**
      * name - the name of the columns, used as key.
      * @type: {string}
@@ -46,6 +46,11 @@ type FlexibleTableCellProps = {
      */
     onClick?(event: Object): void,
     /**
+     * onDoubleClick - callback, called on double click event.
+     * @param {Event} event
+     */
+    onDoubleClick?(event: Object): void,
+    /**
      * onSystemResize - function, called when custom onResize not defined. Used with native FlexibleTable.
      * @param {string} name column name
      * @param {number} width width in pixels
@@ -64,6 +69,10 @@ type FlexibleTableCellProps = {
      * @ignore
      */
     systemContainer?: any,
+    /**
+     * The content of element
+     * @type: {any}
+     */
     children?: any,
 }
 
@@ -75,6 +84,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         onResize,
         button = false,
         onClick,
+        onDoubleClick,
         children,
         name,
         onSystemResize,
@@ -150,7 +160,11 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
             style={{...props.style, width: width || systemWidth || resizeData.width}}
             className={classes.root}
         >
-            <div className={classes.cellContainer} onClick={onClick}>
+            <div
+                className={classes.cellContainer}
+                onClick={button ? onClick : undefined}
+                onDoubleClick={button ? onDoubleClick : undefined}
+            >
                 <div className={classes.content}>
                     {systemWidth} {children}
                 </div>
