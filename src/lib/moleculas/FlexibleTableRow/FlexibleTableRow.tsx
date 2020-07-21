@@ -3,32 +3,16 @@ import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 import FlexibleTableCell from "../FlexibleTableCell";
 import clsx from "clsx";
+import {ButtonClickable, SystemResizeable} from "../../interfaces";
 
-export type FlexibleTableRowProps = {
-    /**
-     * button - if true, row will be clickable.
-     * @type: {boolean}
-     */
-    button?: boolean,
+export interface FlexibleTableRowProps
+    extends SystemResizeable, ButtonClickable {
     /**
      * systemSizes - object with width information, controlled by native FlexibleTable.
      * @type {object}
      * @ignore
      */
     systemSizes?: any,
-    /**
-     * systemContainer - ref to element, which has scroll and contains table
-     * @type React.MutableRefObject<HTMLDivElement>
-     * @ignore
-     */
-    systemContainer?: any,
-    /**
-     * onSystemResize - function, called when custom onResize not defined. Used with native FlexibleTable.
-     * @param {string} name column name
-     * @param {number} width width in pixels
-     * @ignore
-     */
-    onSystemResize?(name: string, width: number): void,
     /**
      * The content of element
      * @type: {any}
