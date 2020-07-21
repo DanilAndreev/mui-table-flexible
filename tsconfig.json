@@ -17,9 +17,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "removeComments": true,
+    "outDir": "dist"
   },
   "include": [
-    "src"
+    "src/lib"
   ]
 }

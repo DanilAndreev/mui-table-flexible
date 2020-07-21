@@ -1,4 +1,4 @@
-export default interface ButtonClickable {
+export interface ButtonClickable {
     /**
      * button - if true, row will be clickable.
      * @type: {boolean}

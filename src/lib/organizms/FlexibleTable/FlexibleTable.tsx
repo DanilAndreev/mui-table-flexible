@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 import FlexibleTableRow from "../../moleculas/FlexibleTableRow";
 
@@ -37,7 +36,10 @@ export default function FlexibleTable(props: FlexibleTableProps) {
         const newSizes: any = {};
         try {
             for (const column of columns) {
-                newSizes[column.props.name] = column.props.defaultWidth;
+                newSizes[column.props.name] = {
+                    width: column.props.defaultWidth,
+                    mouseX: 0,
+                };
             }
         } catch (error) {
             console.error("FlexibleTable: table can not contain zero columns!")
@@ -54,8 +56,9 @@ export default function FlexibleTable(props: FlexibleTableProps) {
             <div className={classes.tableContainer}>
                 <div className={classes.head}>
                     <FlexibleTableRow
-                        onSystemResize={(name: string, width: number) : void => {
-                            setSizes((prev: any) => ({...prev, [name]: width}))
+                        onSystemResize={(name: string, width: number, mouseX: number) : void => {
+                            console.log(name, width, mouseX);
+                            setSizes((prev: any) => ({...prev, [name]: {width, mouseX}}))
                         }}
                         systemSizes={sizes}
                         systemContainer={container}
@@ -86,15 +89,4 @@ export default function FlexibleTable(props: FlexibleTableProps) {
             </div>
         </div>
     );
-}
-
-FlexibleTable.propTypes = {
-    /**
-     * head - jsx components to be pasted in table head.
-     */
-    head: PropTypes.element,
-    /**
-     * columns - array of elements to configure table layout.
-     */
-    columns: PropTypes.arrayOf(PropTypes.element),
 }

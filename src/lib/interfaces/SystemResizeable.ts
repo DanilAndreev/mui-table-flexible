@@ -1,4 +1,4 @@
-export default interface SystemResizeable {
+export interface SystemResizeable {
     /**
      * systemContainer - ref to element, which has scroll and contains table
      * @type React.MutableRefObject<HTMLDivElement>
@@ -12,5 +12,5 @@ export default interface SystemResizeable {
      * @param {number} mouseX previous mouse position
      * @ignore
      */
-    onSystemResize?(name: string, width: number): void,
+    onSystemResize?(name: string, width?: number, mouseX?: number): void,
 }

@@ -1,7 +1,6 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
-import FlexibleTableCell from "../FlexibleTableCell";
+import FlexibleTableCell from "../FlexibleTableCell/index";
 import clsx from "clsx";
 import {ButtonClickable, SystemResizeable} from "../../interfaces";
 
@@ -45,7 +44,8 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
                 }
                 try {
                     newProps = {
-                        systemWidth: systemSizes[cell.props.name],
+                        systemWidth: systemSizes[cell.props.name]?.width,
+                        mouseX: systemSizes[cell.props.name]?.mouseX,
                         systemContainer: systemContainer || null,
                         onSystemResize: onSystemResize,
                         key: `flexible-table-cell-${cell.props.name}`,
@@ -58,11 +58,4 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
             })}
         </div>
     );
-}
-
-FlexibleTableRow.propTypes = {
-    button: PropTypes.bool,
-    systemSizes: PropTypes.object,
-    systemContainer: PropTypes.any,
-    onSystemResize: PropTypes.func,
 }

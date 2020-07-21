@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import {useStyles} from "./styles";
 import {Resizeable, SystemResizeable, ButtonClickable, Stylable} from "../../interfaces";
 
@@ -23,6 +22,11 @@ export interface FlexibleTableCellProps
      */
     systemWidth?: number,
     /**
+     * Last position of mouse on axis X
+     * @type {number}
+     */
+    mouseX?: number,
+    /**
      * The content of element
      * @type: {any}
      */
@@ -43,6 +47,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         onSystemResize,
         systemWidth,
         systemContainer,
+        mouseX,
     } = props;
     const [resizeData, setResizeData] = React.useState({
         /**
@@ -54,7 +59,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * mouseX - previous position of mouse on axis X.
      * @type {React.MutableRefObject<number>}
      */
-    const mouseX = React.useRef(0);
+    // const mouseX = React.useRef(0);
 
 
     React.useEffect(() => {
@@ -67,7 +72,11 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseDown(event: any) {
-        mouseX.current = event.clientX;
+        // mouseX.current = event.clientX;
+        if (onSystemResize) {
+            console.log('kuku');
+            onSystemResize(name, width || defaultWidth, event.clientX);
+        }
         window.addEventListener("mouseup", removeResizeListeners);
         window.addEventListener("mousemove", handleResizeMouseMove);
     }
@@ -90,23 +99,24 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     function handleResizeMouseMove(event: any) {
         const prevWidth = width || resizeData.width;
         const containerScroll = systemContainer.current && systemContainer.current.scrollLeft;
-        const newWidth = prevWidth - (mouseX.current - event.clientX)// - containerScroll;
+        // const newWidth = prevWidth - (mouseX.current - event.clientX)// - containerScroll;
+        const newWidth = prevWidth - ((mouseX || 0) - event.clientX)// - containerScroll;
 
         if (onResize && typeof onResize === "function") {
 //            setResizeData(prev => ({...prev, mouseX: event.clientX}));
-            mouseX.current = event.clientX;
+//            mouseX.current = event.clientX;
             onResize(name, newWidth);
         } else if (onSystemResize && typeof onSystemResize === "function") {
 //            setResizeData(prev => ({...prev, mouseX: event.clientX}));
-            mouseX.current = event.clientX;
+//            mouseX.current = event.clientX;
             onSystemResize(name, newWidth, event.clientX);
         } else {
             setResizeData(prev => ({width: newWidth, mouseX: event.clientX}));
-            mouseX.current = event.clientX;
+//            mouseX.current = event.clientX;
         }
     }
 
-    mouseX.current && console.log(mouseX.current);
+//    mouseX.current && console.log(mouseX.current);
 
     return (
         <div
@@ -131,18 +141,4 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
             </div>
         </div>
     );
-}
-
-FlexibleTableCell.propTypes = {
-    align: PropTypes.string,
-    classes: PropTypes.object,
-    padding: PropTypes.string,
-    size: PropTypes.string,
-    sortDirection: PropTypes.string,
-    variant: PropTypes.string,
-
-    defaultWidth: PropTypes.number,
-    width: PropTypes.number,
-    onResize: PropTypes.func,
-    name: PropTypes.string.isRequired,
 }

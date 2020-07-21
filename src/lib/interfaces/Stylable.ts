@@ -1,4 +1,4 @@
-export default interface Stylable {
+export interface Stylable {
     /**
      * style - styles of component
      * @type: {object}
