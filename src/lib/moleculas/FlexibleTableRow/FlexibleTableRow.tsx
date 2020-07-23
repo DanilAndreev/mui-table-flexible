@@ -23,9 +23,6 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
     const {
         button = false,
         children,
-        systemSizes,
-        systemContainer,
-        onSystemResize,
     } = props;
     const classes = useStyles();
 
@@ -36,25 +33,6 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
                 button && classes.button,
             )}
         >
-            {/*{children.map((cell: any) => {*/}
-            {/*    let newProps: any = {};*/}
-            {/*    if (cell?.type !== FlexibleTableCell) {*/}
-            {/*        console.error("FlexibleTable: unexpected children, all children must be FlexibleTableCell type");*/}
-            {/*        return null;*/}
-            {/*    }*/}
-            {/*    try {*/}
-            {/*        newProps = {*/}
-            {/*            systemWidth: systemSizes[cell.props.name],*/}
-            {/*            systemContainer: systemContainer || null,*/}
-            {/*            onSystemResize: onSystemResize,*/}
-            {/*            key: `flexible-table-cell-${cell.props.name}`,*/}
-            {/*        }*/}
-            {/*    } catch (error) {*/}
-            {/*        console.error("FlexibleTable: unexpected child: ", cell, error);*/}
-            {/*    } finally {*/}
-            {/*        return React.cloneElement(cell, newProps);*/}
-            {/*    }*/}
-            {/*})}*/}
             {children}
         </div>
     );

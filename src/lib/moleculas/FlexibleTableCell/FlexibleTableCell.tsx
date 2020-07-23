@@ -21,11 +21,6 @@ export interface FlexibleTableCellProps
      * @type {number}
      * @ignore
      */
-    // systemWidth?: number,
-    // /**
-    //  * Last position of mouse on axis X
-    //  * @type {number}
-    //  */
     mouseX?: number,
     /**
      * The content of element
@@ -45,34 +40,26 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         onDoubleClick,
         children,
         name,
-        // onSystemResize,
-        // systemWidth,
-        // systemContainer,
     } = props;
     const {getResizeData} = useResizeData();
-    const {onSystemResize, systemWidth,systemContainer} = getResizeData(name);
-    const [resizeData, setResizeData] = React.useState({
-        /**
-         * width - width of the column when width or systemWidth not defined.
-         */
-        width: width || defaultWidth,
-    });
+    const {onSystemResize, systemWidth, systemContainer} = getResizeData(name);
+
     interface Settings { //TODO: change to ref state
-        mouseX: number;
-        width: number;
+        current: {
+            mouseX: number;
+            width: number;
+        } | null,
     }
-    const [settings, setSettings] = React.useState<Settings | null>(null);
+
+    const [settings, setSettings] = React.useState<Settings>({current: null});
 
     React.useEffect(() => {
-        return () => {
-            window.removeEventListener("mousemove", handleResizeMouseMove);
-            window.removeEventListener("mouseup", removeResizeListeners);
-        };
+        return () => removeResizeListeners();
     }, [])
 
     React.useEffect(() => {
         console.log(settings);
-        if (settings) {
+        if (settings?.current) {
             window.addEventListener("mouseup", removeResizeListeners);
             window.addEventListener("mousemove", handleResizeMouseMove);
         } else {
@@ -87,10 +74,11 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseDown(event: any) {
-        console.log('kuku');
         setSettings({
-            width: width || defaultWidth,
-            mouseX: +event.clientX
+            current: {
+                width: width || defaultWidth,
+                mouseX: +event.clientX
+            }
         });
     }
 
@@ -100,7 +88,9 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param [event]
      */
     function removeResizeListeners() {
-        setSettings(null);
+        setSettings({current: null});
+        window.removeEventListener("mousemove", handleResizeMouseMove);
+        window.removeEventListener("mouseup", removeResizeListeners);
     }
 
     /**
@@ -109,10 +99,10 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseMove(event: any) {
-        if (!settings) return null;
+        if (!settings.current) return null;
         console.log('moving, settings', settings);
         const containerScroll = systemContainer.current && systemContainer.current.scrollLeft;
-        const newWidth = settings.width - (settings.mouseX - event.clientX);
+        const newWidth = settings.current.width - (settings.current.mouseX - event.clientX);
 
         if (onResize && typeof onResize === "function") {
             onResize(name, newWidth);
@@ -123,7 +113,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
 
     return (
         <div
-            style={{...props.style, width: width || systemWidth || resizeData.width}}
+            style={{...props.style, width: width || systemWidth}}
             className={classes.root}
         >
             <div

@@ -26,17 +26,19 @@ export type FlexibleTableProps = {
      * @type {array}
      */
     columns: any[], //TODO: change to component type
+    /**
+     * children - children of the component.
+     * @type any
+     */
     children?: any,
 }
 
 export default function FlexibleTable(props: FlexibleTableProps) {
+    const classes = useStyles();
     const {
         head,
         columns,
     } = props;
-    const childrenArray = props.children && Array.isArray(props.children) ? props.children : [props.children];
-
-    const classes = useStyles();
     /**
      * sizes - object, created to store each column width.
      * @type object
@@ -71,41 +73,16 @@ export default function FlexibleTable(props: FlexibleTableProps) {
         };
     }
 
-    // const width = Object.keys(sizes).reduce((total, current) => total + (sizes[current] || 100), 0);
-
     return (
         <div className={classes.root} ref={container}>
             <FlexibleTableContext.Provider value={{getResizeData}}>
                 <div className={classes.tableContainer}>
                     <div className={classes.head}>
-                        <FlexibleTableRow
-                            // onSystemResize={onSystemResize}
-                            // systemSizes={sizes}
-                            // systemContainer={container}
-                        >
-                            {/*{columns.map((column: any, index: number) => {*/}
-                            {/*    return React.cloneElement(column, {key: `flexible-table-column-${index}`});*/}
-                            {/*})}*/}
+                        <FlexibleTableRow>
                             {columns}
                         </FlexibleTableRow>
                     </div>
                     <div>
-                        {/*{childrenArray && childrenArray.map((row: any, index: number) => {*/}
-                        {/*    let newProps: any = {};*/}
-                        {/*    if (row?.type !== FlexibleTableRow) {*/}
-                        {/*        return null;*/}
-                        {/*    }*/}
-                        {/*    try {*/}
-                        {/*        newProps = {*/}
-                        {/*            systemSizes: sizes,*/}
-                        {/*            key: `flexible-table-row-${index}`,*/}
-                        {/*        }*/}
-                        {/*    } catch (error) {*/}
-                        {/*        console.error("FlexibleTable: unexpected child: ", row, error);*/}
-                        {/*    } finally {*/}
-                        {/*        return React.cloneElement(row, newProps);*/}
-                        {/*    }*/}
-                        {/*})}*/}
                         {props.children}
                     </div>
                 </div>
