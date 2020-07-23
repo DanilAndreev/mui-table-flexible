@@ -45,21 +45,18 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     const {onSystemResize, systemWidth, systemContainer} = getResizeData(name);
 
     interface Settings { //TODO: change to ref state
-        current: {
-            mouseX: number;
-            width: number;
-        } | null,
+        mouseX: number;
+        width: number;
     }
 
-    const [settings, setSettings] = React.useState<Settings>({current: null});
+    const [settings, setSettings] = React.useState<Settings | null>(null);
 
     React.useEffect(() => {
         return () => removeResizeListeners();
     }, [])
 
     React.useEffect(() => {
-        console.log(settings);
-        if (settings?.current) {
+        if (settings) {
             window.addEventListener("mouseup", removeResizeListeners);
             window.addEventListener("mousemove", handleResizeMouseMove);
         } else {
@@ -75,10 +72,8 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      */
     function handleResizeMouseDown(event: any) {
         setSettings({
-            current: {
-                width: width || defaultWidth,
-                mouseX: +event.clientX
-            }
+            width: width || systemWidth || defaultWidth,
+            mouseX: +event.clientX
         });
     }
 
@@ -88,7 +83,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param [event]
      */
     function removeResizeListeners() {
-        setSettings({current: null});
+        setSettings(null);
         window.removeEventListener("mousemove", handleResizeMouseMove);
         window.removeEventListener("mouseup", removeResizeListeners);
     }
@@ -99,10 +94,9 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseMove(event: any) {
-        if (!settings.current) return null;
-        console.log('moving, settings', settings);
+        if (!settings) return null;
         const containerScroll = systemContainer.current && systemContainer.current.scrollLeft;
-        const newWidth = settings.current.width - (settings.current.mouseX - event.clientX);
+        const newWidth = settings.width - (settings.mouseX - event.clientX);
 
         if (onResize && typeof onResize === "function") {
             onResize(name, newWidth);
