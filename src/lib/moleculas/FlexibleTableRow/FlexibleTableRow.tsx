@@ -1,11 +1,10 @@
 import React from "react";
 import {useStyles} from "./styles";
-import FlexibleTableCell from "../FlexibleTableCell/index";
 import clsx from "clsx";
-import {ButtonClickable, SystemResizeable} from "../../interfaces";
+import {ButtonClickable} from "../../interfaces";
 
 export interface FlexibleTableRowProps
-    extends SystemResizeable, ButtonClickable {
+    extends ButtonClickable {
     /**
      * systemSizes - object with width information, controlled by native FlexibleTable.
      * @type {object}
