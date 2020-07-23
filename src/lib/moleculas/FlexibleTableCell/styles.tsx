@@ -25,6 +25,5 @@ export const useStyles = makeStyles(theme => ({
     root: {
         display: "inline-block",
         userSelect: "none",
-        minWidth: "30px",
     }
 }));

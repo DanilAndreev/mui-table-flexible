@@ -78,7 +78,7 @@ export default function FlexibleTable(props: FlexibleTableProps) {
             <FlexibleTableContext.Provider value={{getResizeData}}>
                 <div className={classes.tableContainer}>
                     <div className={classes.head}>
-                        <FlexibleTableRow>
+                        <FlexibleTableRow resizeable={true}>
                             {columns}
                         </FlexibleTableRow>
                     </div>

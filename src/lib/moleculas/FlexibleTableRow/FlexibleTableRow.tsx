@@ -16,12 +16,17 @@ export interface FlexibleTableRowProps
      * @type: {any}
      */
     children?: any,
+    /**
+     * resizeable - if true - each cell in row will have resize handlers
+     */
+    resizeable?: boolean
 }
 
 export default function FlexibleTableRow(props: FlexibleTableRowProps) {
     const {
         button = false,
         children,
+        resizeable,
     } = props;
     const classes = useStyles();
 
@@ -32,7 +37,9 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
                 button && classes.button,
             )}
         >
-            {children}
+            {!resizeable ? children : children.map((cell: any) =>
+                React.cloneElement(cell, {resizeable}))
+            }
         </div>
     );
 }

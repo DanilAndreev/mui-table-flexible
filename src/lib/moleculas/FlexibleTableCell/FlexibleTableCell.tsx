@@ -3,6 +3,11 @@ import {useStyles} from "./styles";
 import {Resizeable, SystemResizeable, ButtonClickable, Stylable} from "../../interfaces";
 import {useResizeData} from "../../organizms/FlexibleTable/FlexibleTable";
 
+/**
+ * MIN_CELL_WIDTH - minimal resizeable width of cell in pixels
+ * @type: number
+ */
+const MIN_CELL_WIDTH: number = 40;
 
 export interface FlexibleTableCellProps
     extends Resizeable, ButtonClickable, Stylable {
@@ -39,6 +44,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         onClick,
         onDoubleClick,
         children,
+        resizeable,
         name,
     } = props;
     const {getResizeData} = useResizeData();
@@ -97,7 +103,10 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     function handleResizeMouseMove(event: any) {
         if (!settings) return null;
         const containerScroll: number = systemContainer.current?.scrollLeft || 0;
-        const newWidth: number = settings.width - (settings.mouseX - (event.clientX + containerScroll));
+        let newWidth: number = settings.width - (settings.mouseX - (event.clientX + containerScroll));
+        if (newWidth < MIN_CELL_WIDTH) {
+            newWidth = MIN_CELL_WIDTH;
+        }
 
         if (onResize && typeof onResize === "function") {
             onResize(name, newWidth);
@@ -119,7 +128,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
                 <div className={classes.content}>
                     {systemWidth} {children}
                 </div>
-                {systemContainer !== null &&
+                {resizeable &&
                 <div
                     className={classes.handle}
                     onMouseDown={handleResizeMouseDown}

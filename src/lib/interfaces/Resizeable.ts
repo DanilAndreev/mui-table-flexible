@@ -10,4 +10,10 @@ export interface Resizeable {
      * @param {number} width width in pixels
      */
     onResize?(name: string, width: number): void,
+    /**
+     * resizeable - flag, used to determine draw resize handlers or not.
+     * @type boolean
+     * @ignore
+     */
+    resizeable?: boolean,
 }
