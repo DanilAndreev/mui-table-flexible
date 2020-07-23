@@ -1,10 +1,11 @@
 import React from "react";
 import {useStyles} from "./styles";
 import {Resizeable, SystemResizeable, ButtonClickable, Stylable} from "../../interfaces";
+import {useResizeData} from "../../organizms/FlexibleTable/FlexibleTable";
 
 
 export interface FlexibleTableCellProps
-    extends Resizeable, SystemResizeable, ButtonClickable, Stylable {
+    extends Resizeable, ButtonClickable, Stylable {
     /**
      * name - the name of the columns, used as key.
      * @type: {string}
@@ -20,11 +21,11 @@ export interface FlexibleTableCellProps
      * @type {number}
      * @ignore
      */
-    systemWidth?: number,
-    /**
-     * Last position of mouse on axis X
-     * @type {number}
-     */
+    // systemWidth?: number,
+    // /**
+    //  * Last position of mouse on axis X
+    //  * @type {number}
+    //  */
     mouseX?: number,
     /**
      * The content of element
@@ -44,38 +45,40 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         onDoubleClick,
         children,
         name,
-        onSystemResize,
-        systemWidth,
-        systemContainer,
+        // onSystemResize,
+        // systemWidth,
+        // systemContainer,
     } = props;
+    const {getResizeData} = useResizeData();
+    const {onSystemResize, systemWidth,systemContainer} = getResizeData(name);
     const [resizeData, setResizeData] = React.useState({
         /**
          * width - width of the column when width or systemWidth not defined.
          */
         width: width || defaultWidth,
     });
-    interface Settings {
+    interface Settings { //TODO: change to ref state
         mouseX: number;
         width: number;
     }
     const [settings, setSettings] = React.useState<Settings | null>(null);
 
-
     React.useEffect(() => {
-        if (settings) {
-            console.log('subscribed');
-            window.addEventListener("mouseup", removeResizeListeners);
-            window.addEventListener("mousemove", handleResizeMouseMove);
-        } else {
-            console.log('unsubscribed');
-            window.removeEventListener("mousemove", handleResizeMouseMove);
-            window.removeEventListener("mouseup", removeResizeListeners);
-        }
         return () => {
-            console.log('unmounted');
             window.removeEventListener("mousemove", handleResizeMouseMove);
             window.removeEventListener("mouseup", removeResizeListeners);
         };
+    }, [])
+
+    React.useEffect(() => {
+        console.log(settings);
+        if (settings) {
+            window.addEventListener("mouseup", removeResizeListeners);
+            window.addEventListener("mousemove", handleResizeMouseMove);
+        } else {
+            window.removeEventListener("mousemove", handleResizeMouseMove);
+            window.removeEventListener("mouseup", removeResizeListeners);
+        }
     }, [settings]);
 
     /**
@@ -107,6 +110,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      */
     function handleResizeMouseMove(event: any) {
         if (!settings) return null;
+        console.log('moving, settings', settings);
         const containerScroll = systemContainer.current && systemContainer.current.scrollLeft;
         const newWidth = settings.width - (settings.mouseX - event.clientX);
 
