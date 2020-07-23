@@ -36,10 +36,7 @@ export default function FlexibleTable(props: FlexibleTableProps) {
         const newSizes: any = {};
         try {
             for (const column of columns) {
-                newSizes[column.props.name] = {
-                    width: column.props.defaultWidth,
-                    mouseX: 0,
-                };
+                newSizes[column.props.name] = column.props.defaultWidth;
             }
         } catch (error) {
             console.error("FlexibleTable: table can not contain zero columns!")
@@ -56,9 +53,9 @@ export default function FlexibleTable(props: FlexibleTableProps) {
             <div className={classes.tableContainer}>
                 <div className={classes.head}>
                     <FlexibleTableRow
-                        onSystemResize={(name: string, width: number, mouseX: number) : void => {
-                            console.log(name, width, mouseX);
-                            setSizes((prev: any) => ({...prev, [name]: {width, mouseX}}))
+                        onSystemResize={(name: string, width: number) : void => {
+                            // console.log(name, width, mouseX);
+                            setSizes((prev: any) => ({...prev, [name]: width}))
                         }}
                         systemSizes={sizes}
                         systemContainer={container}

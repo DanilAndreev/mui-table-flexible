@@ -12,5 +12,5 @@ export interface SystemResizeable {
      * @param {number} mouseX previous mouse position
      * @ignore
      */
-    onSystemResize?(name: string, width?: number, mouseX?: number): void,
+    onSystemResize?(name: string, width?: number): void,
 }

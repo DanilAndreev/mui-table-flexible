@@ -47,7 +47,6 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         onSystemResize,
         systemWidth,
         systemContainer,
-        mouseX,
     } = props;
     const [resizeData, setResizeData] = React.useState({
         /**
@@ -55,16 +54,29 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
          */
         width: width || defaultWidth,
     });
-    /**
-     * mouseX - previous position of mouse on axis X.
-     * @type {React.MutableRefObject<number>}
-     */
-    // const mouseX = React.useRef(0);
+    interface Settings {
+        mouseX: number;
+        width: number;
+    }
+    const [settings, setSettings] = React.useState<Settings | null>(null);
 
 
     React.useEffect(() => {
-        return () => removeResizeListeners();
-    }, [])
+        if (settings) {
+            console.log('subscribed');
+            window.addEventListener("mouseup", removeResizeListeners);
+            window.addEventListener("mousemove", handleResizeMouseMove);
+        } else {
+            console.log('unsubscribed');
+            window.removeEventListener("mousemove", handleResizeMouseMove);
+            window.removeEventListener("mouseup", removeResizeListeners);
+        }
+        return () => {
+            console.log('unmounted');
+            window.removeEventListener("mousemove", handleResizeMouseMove);
+            window.removeEventListener("mouseup", removeResizeListeners);
+        };
+    }, [settings]);
 
     /**
      * @function
@@ -72,13 +84,11 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseDown(event: any) {
-        // mouseX.current = event.clientX;
-        if (onSystemResize) {
-            console.log('kuku');
-            onSystemResize(name, width || defaultWidth, event.clientX);
-        }
-        window.addEventListener("mouseup", removeResizeListeners);
-        window.addEventListener("mousemove", handleResizeMouseMove);
+        console.log('kuku');
+        setSettings({
+            width: width || defaultWidth,
+            mouseX: +event.clientX
+        });
     }
 
     /**
@@ -87,8 +97,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param [event]
      */
     function removeResizeListeners() {
-        window.removeEventListener("mousemove", handleResizeMouseMove);
-        window.removeEventListener("mouseup", removeResizeListeners);
+        setSettings(null);
     }
 
     /**
@@ -97,26 +106,16 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseMove(event: any) {
-        const prevWidth = width || resizeData.width;
+        if (!settings) return null;
         const containerScroll = systemContainer.current && systemContainer.current.scrollLeft;
-        // const newWidth = prevWidth - (mouseX.current - event.clientX)// - containerScroll;
-        const newWidth = prevWidth - ((mouseX || 0) - event.clientX)// - containerScroll;
+        const newWidth = settings.width - (settings.mouseX - event.clientX);
 
         if (onResize && typeof onResize === "function") {
-//            setResizeData(prev => ({...prev, mouseX: event.clientX}));
-//            mouseX.current = event.clientX;
             onResize(name, newWidth);
         } else if (onSystemResize && typeof onSystemResize === "function") {
-//            setResizeData(prev => ({...prev, mouseX: event.clientX}));
-//            mouseX.current = event.clientX;
-            onSystemResize(name, newWidth, event.clientX);
-        } else {
-            setResizeData(prev => ({width: newWidth, mouseX: event.clientX}));
-//            mouseX.current = event.clientX;
+            onSystemResize(name, newWidth);
         }
     }
-
-//    mouseX.current && console.log(mouseX.current);
 
     return (
         <div

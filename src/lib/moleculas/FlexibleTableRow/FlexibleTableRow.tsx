@@ -44,8 +44,7 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
                 }
                 try {
                     newProps = {
-                        systemWidth: systemSizes[cell.props.name]?.width,
-                        mouseX: systemSizes[cell.props.name]?.mouseX,
+                        systemWidth: systemSizes[cell.props.name],
                         systemContainer: systemContainer || null,
                         onSystemResize: onSystemResize,
                         key: `flexible-table-cell-${cell.props.name}`,
