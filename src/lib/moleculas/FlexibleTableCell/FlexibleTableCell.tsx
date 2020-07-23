@@ -44,7 +44,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     const {getResizeData} = useResizeData();
     const {onSystemResize, systemWidth, systemContainer} = getResizeData(name);
 
-    interface Settings { //TODO: change to ref state
+    interface Settings {
         mouseX: number;
         width: number;
     }
@@ -71,7 +71,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseDown(event: any) {
-        const containerScroll: number = systemContainer.current?.scrollLeft;
+        const containerScroll: number = systemContainer.current?.scrollLeft || 0;
         setSettings({
             width: width || systemWidth || defaultWidth,
             mouseX: +event.clientX + containerScroll,
@@ -96,7 +96,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      */
     function handleResizeMouseMove(event: any) {
         if (!settings) return null;
-        const containerScroll: number = systemContainer.current?.scrollLeft;
+        const containerScroll: number = systemContainer.current?.scrollLeft || 0;
         const newWidth: number = settings.width - (settings.mouseX - (event.clientX + containerScroll));
 
         if (onResize && typeof onResize === "function") {
