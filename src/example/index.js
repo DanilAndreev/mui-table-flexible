@@ -8,10 +8,10 @@ import FlexibleTableRow from "../lib/moleculas/FlexibleTableRow/FlexibleTableRow
 export default function Example() {
     const columns = [
         <FlexibleTableCell defaultWidth={150} name={'hello'}>Hello</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={200} name={'darkness'}>Darkness <br/> s </FlexibleTableCell>,
+        <FlexibleTableCell defaultWidth={250} name={'darkness'}>Darkness <br/> s </FlexibleTableCell>,
         <FlexibleTableCell defaultWidth={210} name={'my'}>My</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={140} name={'old'}>Old</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={120} name={'friend'}>Friend</FlexibleTableCell>,
+        <FlexibleTableCell defaultWidth={440} name={'old'}>Old</FlexibleTableCell>,
+        <FlexibleTableCell defaultWidth={230} name={'friend'}>Friend</FlexibleTableCell>,
     ];
 
     return (

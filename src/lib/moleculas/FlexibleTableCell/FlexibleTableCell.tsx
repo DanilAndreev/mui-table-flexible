@@ -2,6 +2,7 @@ import React from "react";
 import {useStyles} from "./styles";
 import {Resizeable, SystemResizeable, ButtonClickable, Stylable} from "../../interfaces";
 import {useResizeData} from "../../organizms/FlexibleTable/FlexibleTable";
+import clsx from "clsx";
 
 /**
  * MIN_CELL_WIDTH - minimal resizeable width of cell in pixels
@@ -28,10 +29,15 @@ export interface FlexibleTableCellProps
      */
     mouseX?: number,
     /**
+     * disableOverflowHidden - if true, cell will not have overflow: hidden style.
+     */
+    disableOverflowHidden?: boolean,
+    /**
      * The content of element
      * @type: {any}
      */
     children?: any,
+    ref?: any,
 }
 
 export default function FlexibleTableCell(props: FlexibleTableCellProps) {
@@ -45,7 +51,9 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         onDoubleClick,
         children,
         resizeable,
+        disableOverflowHidden,
         name,
+        ref,
     } = props;
     const {getResizeData} = useResizeData();
     const {onSystemResize, systemWidth, systemContainer} = getResizeData(name);
@@ -117,14 +125,15 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         <div
             style={{...props.style, width: width || systemWidth}}
             className={classes.root}
+            ref={ref}
         >
             <div
                 className={classes.cellContainer}
                 onClick={button ? onClick : undefined}
                 onDoubleClick={button ? onDoubleClick : undefined}
             >
-                <div className={classes.content}>
-                    {systemWidth} {children}
+                <div className={clsx(classes.content, !disableOverflowHidden && classes.overflowHidden)}>
+                    {children}
                 </div>
                 {resizeable &&
                 <div

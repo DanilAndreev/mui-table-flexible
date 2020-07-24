@@ -38,6 +38,7 @@ export default function FlexibleTable(props: FlexibleTableProps) {
     const {
         head,
         columns,
+        children,
     } = props;
     /**
      * sizes - object, created to store each column width.
@@ -45,7 +46,16 @@ export default function FlexibleTable(props: FlexibleTableProps) {
      */
     const [sizes, setSizes] = React.useState<any>({});
 
-    const container = React.createRef<HTMLDivElement>();
+    /**
+     * container - ref to main table container
+     * @type RefObject<HTMLDivElement>
+     */
+    const container: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
+    /**
+     * container - ref to inner position absolute table container
+     * @type React.RefObject<HTMLDivElement>
+     */
+    const absoluteContainer: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
 
     React.useEffect(() => {
         const newSizes: any = {};
@@ -73,17 +83,20 @@ export default function FlexibleTable(props: FlexibleTableProps) {
         };
     }
 
+    //const tableHeight = children.reduce((current: any, memory: number) => memory + current., 0);
+    console.log(absoluteContainer);
+
     return (
         <div className={classes.root} ref={container}>
             <FlexibleTableContext.Provider value={{getResizeData}}>
-                <div className={classes.tableContainer}>
+                <div className={classes.tableContainer} ref={absoluteContainer}>
                     <div className={classes.head}>
                         <FlexibleTableRow resizeable={true}>
                             {columns}
                         </FlexibleTableRow>
                     </div>
                     <div>
-                        {props.children}
+                        {children}
                     </div>
                 </div>
             </FlexibleTableContext.Provider>

@@ -20,6 +20,8 @@ export const useStyles = makeStyles(theme => ({
     },
     content: {
         flexGrow: 1,
+    },
+    overflowHidden: {
         overflow: "hidden",
     },
     root: {
