@@ -35,7 +35,9 @@ export default function FlexibleTableAutomated() {
                             columns={columns}
                         >
                             <FlexibleTableRow button>
-                                <FlexibleTableCell name={'hello'} button onClick={() => alert('Hello')}>I've</FlexibleTableCell>
+                                <FlexibleTableCell name={'hello'} button onClick={() => alert('Hello')}>
+                                    I've
+                                </FlexibleTableCell>
                                 <FlexibleTableCell name={'darkness'}>come</FlexibleTableCell>
                                 <FlexibleTableCell name={'my'}>to talk</FlexibleTableCell>
                                 <FlexibleTableCell name={'old'}>with you</FlexibleTableCell>
