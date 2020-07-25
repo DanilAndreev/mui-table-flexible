@@ -1,3 +1,8 @@
+/*
+ * Author: Danil Andrieiev | danssg08@gmail.com |  https://github.com/DanilAndreev
+ *  Copyright (c) 2020.
+ */
+
 export interface SystemResizeable {
     /**
      * systemContainer - ref to element, which has scroll and contains table
