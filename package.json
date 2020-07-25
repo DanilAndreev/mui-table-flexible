@@ -44,7 +44,7 @@
     "eject": "react-scripts eject"
   },
   "files": [
-    "src/lib"
+    "src/lib/*"
   ],
   "eslintConfig": {
     "extends": "react-app"

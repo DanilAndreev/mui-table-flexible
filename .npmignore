@@ -8,6 +8,7 @@
 
 # production
 /build
+/public
 
 # misc
 .DS_Store
@@ -21,7 +22,18 @@ yarn-debug.log*
 yarn-error.log*
 
 # Intellij files
-.idea
+/.idea
+/.run
 
-# compiled files
-/dist
+# source code
+/src
+
+# service
+yarn.lock
+babel.config.js
+todo
+tsconfig.json
+
+# git
+/.git
+.gitignore
