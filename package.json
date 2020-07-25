@@ -1,6 +1,6 @@
 {
   "name": "@danilandreev/mui-table-flexible",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "mui-table-flexible - is a powerful table processor, designed to create tables with resize handlers for big amount of data.",
   "author": {
