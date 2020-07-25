@@ -61,7 +61,8 @@ export default function FlexibleTableAutomated() {
             </Grid>
         </Grid>
     );
-}```
+}
+```
 ### Learn
 You can find example project in [this repository]().  
 Also, you can find more info in [wiki]().
