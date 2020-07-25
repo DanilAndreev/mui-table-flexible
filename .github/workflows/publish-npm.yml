@@ -11,40 +11,74 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+#      - uses: actions/setup-node@v1
+#        with:
+#          node-version: 12
+#      - run: npm ci
+#      - run: npm test
+      - uses: borales/actions-yarn@v2.0.0
         with:
-          node-version: 12
-      - run: npm ci
-      - run: npm test
+          cmd: install # will run `yarn install` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build # will run `yarn build` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: test # will run `yarn test` command
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+#      - uses: actions/setup-node@v1
+#        with:
+#          node-version: 12
+#          registry-url: https://registry.npmjs.org/
+#          scope: '@danilandreev'
+#      - run: npm ci
+#      - run: npm run build
+#      - run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - uses: borales/actions-yarn@v2.0.0
         with:
-          node-version: 12
+          cmd: install # will run `yarn install` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build # will run `yarn build` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          auth-token: ${{ secrets.NPM_TOKEN }}
           registry-url: https://registry.npmjs.org/
           scope: '@danilandreev'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          cmd: publish # will run `yarn publish` command
+
 
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+#      - uses: actions/setup-node@v1
+#        with:
+#          node-version: 12
+#          registry-url: https://npm.pkg.github.com/
+#          scope: '@danilandreev'
+#      - run: npm ci
+#      - run: npm run build
+#      - run: npm publish
+#        env:
+#          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - uses: borales/actions-yarn@v2.0.0
         with:
-          node-version: 12
+          cmd: install # will run `yarn install` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build # will run `yarn build` command
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          auth-token: ${{ secrets.GITHUB_TOKEN }}
           registry-url: https://npm.pkg.github.com/
           scope: '@danilandreev'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          cmd: publish # will run `yarn publish` command
