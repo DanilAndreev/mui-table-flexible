@@ -19,7 +19,8 @@
     "noEmit": false,
     "jsx": "react",
     "removeComments": false,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "declaration": true
   },
   "include": [
     "src/lib/*"
