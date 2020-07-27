@@ -31,15 +31,19 @@ export default function FlexibleTableContained() {
                         </Box>
                         <FlexibleTable
                             columns={columns}
-                            disableAutoHeight
-                            style={{height: '200px'}}
                         >
                             <FlexibleTableRow button>
                                 <FlexibleTableCell name={'hello'}>I've</FlexibleTableCell>
                                 <FlexibleTableCell name={'darkness'}>come</FlexibleTableCell>
                                 <FlexibleTableCell name={'my'}>to talk</FlexibleTableCell>
                                 <FlexibleTableCell name={'old'}>with you</FlexibleTableCell>
-                                <FlexibleTableCell name={'friend'}>again</FlexibleTableCell>
+                                <FlexibleTableCell name={'friend'}>
+                                    <img
+                                        style={{width: '100%'}}
+                                        src={"https://cdn.worldvectorlogo.com/logos/react.svg"}
+                                        alt={"react logo"}
+                                    />
+                                </FlexibleTableCell>
                             </FlexibleTableRow>
                             <FlexibleTableRow>
                                 <FlexibleTableCell name={'hello'}>Because </FlexibleTableCell>
