@@ -45,6 +45,14 @@ export const useStyles = makeStyles(theme => ({
     overflowHidden: {
         overflow: "hidden",
     },
+    button: {
+        "&:hover": {
+            backgroundColor: "rgba(0,0,0,0.08)",
+        },
+        "&:active": {
+            backgroundColor: "rgba(0,0,0,0.1)",
+        },
+    },
     root: {
         display: "inline-block",
         userSelect: "none",

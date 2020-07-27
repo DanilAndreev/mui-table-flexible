@@ -34,14 +34,14 @@ export default function FlexibleTableAutomated() {
                             disableAutoHeight
                             style={{height: '200px'}}
                         >
-                            <FlexibleTableRow button>
-                                <FlexibleTableCell name={'hello'} button onClick={() => alert('Hello')}>I've</FlexibleTableCell>
+                            <FlexibleTableRow>
+                                <FlexibleTableCell name={'hello'} button onClick={() => alert('I\'ve clicked')}>I've</FlexibleTableCell>
                                 <FlexibleTableCell name={'darkness'}>come</FlexibleTableCell>
                                 <FlexibleTableCell name={'my'}>to talk</FlexibleTableCell>
                                 <FlexibleTableCell name={'old'}>with you</FlexibleTableCell>
                                 <FlexibleTableCell name={'friend'}>again</FlexibleTableCell>
                             </FlexibleTableRow>
-                            <FlexibleTableRow button>
+                            <FlexibleTableRow button onDoubleClick={() => alert('Line double clicked')}>
                                 <FlexibleTableCell name={'hello'}>Because </FlexibleTableCell>
                                 <FlexibleTableCell name={'darkness'}>a</FlexibleTableCell>
                                 <FlexibleTableCell name={'my'}>vision</FlexibleTableCell>

@@ -30,6 +30,8 @@ export interface FlexibleTableRowProps
 export default function FlexibleTableRow(props: FlexibleTableRowProps) {
     const {
         button = false,
+        onClick,
+        onDoubleClick,
         children,
         resizeable,
     } = props;
@@ -43,6 +45,8 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
                 button && classes.button,
             )}
             style={props.style}
+            onClick={onClick}
+            onDoubleClick={onDoubleClick}
         >
             {!resizeable ? children : children.map((cell: any) =>
                 React.cloneElement(cell, {resizeable}))

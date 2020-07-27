@@ -133,7 +133,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
             ref={ref}
         >
             <div
-                className={classes.cellContainer}
+                className={clsx(classes.cellContainer, button && classes.button)}
                 onClick={button ? onClick : undefined}
                 onDoubleClick={button ? onDoubleClick : undefined}
             >
