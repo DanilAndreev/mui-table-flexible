@@ -4,13 +4,18 @@
  */
 
 import React from "react";
+
+//MuiFlexibleTable components
 import FlexibleTable from "../lib/organizms/FlexibleTable/FlexibleTable";
 import FlexibleTableCell from "../lib/moleculas/FlexibleTableCell/FlexibleTableCell";
+import FlexibleTableRow from "../lib/moleculas/FlexibleTableRow/FlexibleTableRow";
+
+//MaterialUI Components
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import FlexibleTableRow from "../lib/moleculas/FlexibleTableRow/FlexibleTableRow";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+
 
 export default function FlexibleTableControlled() {
     const [sizes, setSizes] = React.useState({});

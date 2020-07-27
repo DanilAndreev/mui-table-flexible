@@ -5,7 +5,7 @@
 
 import React from "react";
 import {useStyles} from "./styles";
-import {Resizeable, SystemResizeable, ButtonClickable, Stylable} from "../../interfaces";
+import {ButtonClickable, Resizeable, Stylable} from "../../interfaces";
 import {useResizeData} from "../../organizms/FlexibleTable/FlexibleTable";
 import clsx from "clsx";
 
@@ -61,7 +61,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         ref,
     } = props;
     const {getResizeData} = useResizeData();
-    const {onSystemResize, systemWidth, systemContainer} = getResizeData(name);
+    const {onSystemResize, systemWidth} = getResizeData(name);
 
     interface Settings {
         mouseX: number;

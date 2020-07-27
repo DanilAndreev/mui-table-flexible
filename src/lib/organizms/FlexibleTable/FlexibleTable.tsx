@@ -6,8 +6,7 @@
 import React from "react";
 import {useStyles} from "./styles";
 import FlexibleTableRow from "../../moleculas/FlexibleTableRow";
-import {ResizeData} from "../../interfaces/ResizeData";
-import {Stylable} from "../../interfaces";
+import {Stylable, ResizeData} from "../../interfaces";
 import clsx from "clsx";
 
 export interface FlexibleContext {
