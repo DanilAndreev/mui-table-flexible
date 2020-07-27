@@ -15,10 +15,12 @@ export interface FlexibleContext {
      * @param {string} name
      */
     getResizeData(name: string): ResizeData;
+    dense: boolean,
 }
 
 const FlexibleTableContext = React.createContext<FlexibleContext>({
     getResizeData: (name: string) => ({systemWidth: 0}),
+    dense: false,
 });
 
 export interface FlexibleTableProps
@@ -39,6 +41,11 @@ export interface FlexibleTableProps
      */
     disableAutoHeight?: boolean,
     /**
+     * dense - if true, cell will have small padding
+     * @type boolean
+     */
+    dense?: boolean,
+    /**
      * children - children of the component.
      * @type any
      */
@@ -51,6 +58,7 @@ export default function FlexibleTable(props: FlexibleTableProps) {
         head,
         columns,
         disableAutoHeight,
+        dense,
         children,
     } = props;
     /**
@@ -107,7 +115,7 @@ export default function FlexibleTable(props: FlexibleTableProps) {
             ref={container}
             style={{height: disableAutoHeight ? undefined : height, ...props.style}}
         >
-            <FlexibleTableContext.Provider value={{getResizeData}}>
+            <FlexibleTableContext.Provider value={{getResizeData, dense: !!dense}}>
                 <div className={classes.tableContainer} ref={absoluteContainer}>
                     <div className={classes.head}>
                         <FlexibleTableRow resizeable={true}>

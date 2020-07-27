@@ -35,11 +35,12 @@ export interface FlexibleTableCellProps
     mouseX?: number,
     /**
      * disableOverflowHidden - if true, cell will not have overflow: hidden style.
+     * @type: boolean
      */
     disableOverflowHidden?: boolean,
     /**
-     * The content of element
-     * @type: {any}
+     * dense - if true, cell will have small padding
+     * @type boolean
      */
     children?: any,
     ref?: any,
@@ -60,7 +61,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
         name,
         ref,
     } = props;
-    const {getResizeData} = useResizeData();
+    const {getResizeData, dense} = useResizeData();
     const {onSystemResize, systemWidth} = getResizeData(name);
 
     interface Settings {
@@ -137,7 +138,13 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
                 onClick={button ? onClick : undefined}
                 onDoubleClick={button ? onDoubleClick : undefined}
             >
-                <div className={clsx(classes.content, !disableOverflowHidden && classes.overflowHidden)}>
+                <div
+                    className={clsx(
+                        classes.content,
+                        !disableOverflowHidden && classes.overflowHidden,
+                        dense && classes.dense,
+                    )}
+                >
                     {children}
                 </div>
                 {resizeable &&
@@ -145,7 +152,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
                     className={classes.handle}
                     onMouseDown={handleResizeMouseDown}
                 >
-                    <div className={classes.handleTarget} />
+                    <div className={classes.handleTarget}/>
                 </div>
                 }
             </div>

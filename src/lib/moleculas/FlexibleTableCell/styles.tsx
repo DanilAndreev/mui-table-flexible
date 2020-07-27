@@ -41,6 +41,7 @@ export const useStyles = makeStyles(theme => ({
     },
     content: {
         flexGrow: 1,
+        padding: theme.spacing(1),
     },
     overflowHidden: {
         overflow: "hidden",
@@ -52,6 +53,9 @@ export const useStyles = makeStyles(theme => ({
         "&:active": {
             backgroundColor: "rgba(0,0,0,0.1)",
         },
+    },
+    dense: {
+        padding: "1px",
     },
     root: {
         display: "inline-block",

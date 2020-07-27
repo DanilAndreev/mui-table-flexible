@@ -38,6 +38,7 @@ export default function FlexibleTableAutomated() {
                             columns={columns}
                             disableAutoHeight
                             style={{height: '200px'}}
+                            dense
                         >
                             <FlexibleTableRow>
                                 <FlexibleTableCell name={'hello'} button onClick={() => alert('I\'ve clicked')}>I've</FlexibleTableCell>
