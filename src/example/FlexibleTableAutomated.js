@@ -27,6 +27,8 @@ export default function FlexibleTableAutomated() {
                     <Paper>
                         <FlexibleTable
                             columns={columns}
+                            disableAutoHeight
+                            style={{height: '200px'}}
                         >
                             <FlexibleTableRow button>
                                 <FlexibleTableCell name={'hello'} button onClick={() => alert('Hello')}>I've</FlexibleTableCell>

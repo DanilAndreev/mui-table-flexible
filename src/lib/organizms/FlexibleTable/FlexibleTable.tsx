@@ -7,6 +7,8 @@ import React from "react";
 import {useStyles} from "./styles";
 import FlexibleTableRow from "../../moleculas/FlexibleTableRow";
 import {ResizeData} from "../../interfaces/ResizeData";
+import {Stylable} from "../../interfaces";
+import clsx from "clsx";
 
 export interface FlexibleContext {
     /**
@@ -20,17 +22,23 @@ const FlexibleTableContext = React.createContext<FlexibleContext>({
     getResizeData: (name: string) => ({systemWidth: 0}),
 });
 
-export type FlexibleTableProps = {
+export interface FlexibleTableProps
+    extends Stylable {
     /**
      * head - jsx components to be pasted in table head.
-     * @type {React.Component}
+     * @type React.Component
      */
     head?: any,
     /**
      * columns - array of elements to configure table layout.
-     * @type {array}
+     * @type array
      */
     columns: any[], //TODO: change to component type
+    /**
+     * disableAutoHeight - if true , component will not recalculate container height by columns height.
+     * @type boolean
+     */
+    disableAutoHeight?: boolean,
     /**
      * children - children of the component.
      * @type any
@@ -39,10 +47,11 @@ export type FlexibleTableProps = {
 }
 
 export default function FlexibleTable(props: FlexibleTableProps) {
-    const classes = useStyles();
+    const classes = {...useStyles(), ...props.classes};
     const {
         head,
         columns,
+        disableAutoHeight,
         children,
     } = props;
     /**
@@ -50,6 +59,7 @@ export default function FlexibleTable(props: FlexibleTableProps) {
      * @type object
      */
     const [sizes, setSizes] = React.useState<any>({});
+    const [height, setHeight] = React.useState<number>(0);
 
     /**
      * container - ref to main table container
@@ -76,6 +86,10 @@ export default function FlexibleTable(props: FlexibleTableProps) {
 
     }, []);
 
+    React.useEffect(() => {
+        absoluteContainer.current && setHeight(absoluteContainer.current.clientHeight + 20);
+    }, [absoluteContainer]);
+
     function onSystemResize(name: string, width: number): void {
         setSizes((prev: any) => ({...prev, [name]: width}));
     }
@@ -88,11 +102,12 @@ export default function FlexibleTable(props: FlexibleTableProps) {
         };
     }
 
-    //const tableHeight = children.reduce((current: any, memory: number) => memory + current., 0);
-    console.log(absoluteContainer);
-
     return (
-        <div className={classes.root} ref={container}>
+        <div
+            className={clsx(classes.root, props.className)}
+            ref={container}
+            style={{height: disableAutoHeight ? undefined : height, ...props.style}}
+        >
             <FlexibleTableContext.Provider value={{getResizeData}}>
                 <div className={classes.tableContainer} ref={absoluteContainer}>
                     <div className={classes.head}>
