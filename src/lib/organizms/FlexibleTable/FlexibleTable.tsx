@@ -26,11 +26,6 @@ const FlexibleTableContext = React.createContext<FlexibleContext>({
 export interface FlexibleTableProps
     extends Stylable {
     /**
-     * head - jsx components to be pasted in table head.
-     * @type React.Component
-     */
-    head?: any,
-    /**
      * columns - array of elements to configure table layout.
      * @type array
      */
@@ -41,7 +36,7 @@ export interface FlexibleTableProps
      */
     disableAutoHeight?: boolean,
     /**
-     * dense - if true, cell will have small padding
+     * dense - if true, cell will have small padding.
      * @type boolean
      */
     dense?: boolean,
@@ -55,7 +50,6 @@ export interface FlexibleTableProps
 export default function FlexibleTable(props: FlexibleTableProps) {
     const classes = {...useStyles(), ...props.classes};
     const {
-        head,
         columns,
         disableAutoHeight,
         dense,
@@ -122,7 +116,7 @@ export default function FlexibleTable(props: FlexibleTableProps) {
                             {columns}
                         </FlexibleTableRow>
                     </div>
-                    <div>
+                    <div className={classes.body}>
                         {children}
                     </div>
                 </div>

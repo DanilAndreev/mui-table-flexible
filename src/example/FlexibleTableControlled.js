@@ -47,8 +47,6 @@ export default function FlexibleTableControlled() {
                         </Box>
                         <FlexibleTable
                             columns={columns}
-                            disableAutoHeight
-                            style={{height: '200px'}}
                         >
                             <FlexibleTableRow>
                                 <FlexibleTableCell

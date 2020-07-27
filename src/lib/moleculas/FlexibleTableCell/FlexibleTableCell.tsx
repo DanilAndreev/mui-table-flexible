@@ -28,19 +28,13 @@ export interface FlexibleTableCellProps
      */
     defaultWidth?: number,
     /**
-     * systemWidth - width, controlled by native FlexibleTable.
-     * @type {number}
-     * @ignore
-     */
-    mouseX?: number,
-    /**
      * disableOverflowHidden - if true, cell will not have overflow: hidden style.
      * @type: boolean
      */
     disableOverflowHidden?: boolean,
     /**
-     * dense - if true, cell will have small padding
-     * @type boolean
+     * The content of element
+     * @type: node
      */
     children?: any,
     ref?: any,

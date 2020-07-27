@@ -11,18 +11,13 @@ import {ButtonClickable, Stylable} from "../../interfaces";
 export interface FlexibleTableRowProps
     extends ButtonClickable, Stylable {
     /**
-     * systemSizes - object with width information, controlled by native FlexibleTable.
-     * @type {object}
-     * @ignore
-     */
-    systemSizes?: any,
-    /**
      * The content of element
-     * @type: {any}
+     * @type: node
      */
     children?: any,
     /**
      * resizeable - if true - each cell in row will have resize handlers
+     * @ignore
      */
     resizeable?: boolean
 }
