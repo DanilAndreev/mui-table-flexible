@@ -3,5 +3,5 @@
  *  Copyright (c) 2020.
  */
 
-export {FlexibleTableCell} from "./moleculas"
-export {FlexibleTable} from "./organizms"
+export * from "./moleculas"
+export * from "./organizms"
