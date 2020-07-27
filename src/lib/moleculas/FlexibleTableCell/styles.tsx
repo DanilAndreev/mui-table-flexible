@@ -16,11 +16,27 @@ export const useStyles = makeStyles(theme => ({
         width: "8px",
         backgroundColor: grey[200],
         cursor: "col-resize",
+        position: "relative",
         "&:hover": {
             backgroundColor: grey[400],
         },
+        "&:hover $handleTarget": {
+            display: "block",
+        },
         "&:active": {
             backgroundColor: grey[500],
+        },
+    },
+    handleTarget: {
+        display: "none",
+        position: "absolute",
+        top: 0,
+        right: "-10px",
+        left: "-10px",
+        bottom: "-5px",
+        zIndex: 100,
+        "&:hover": {
+            display: "block",
         },
     },
     content: {
