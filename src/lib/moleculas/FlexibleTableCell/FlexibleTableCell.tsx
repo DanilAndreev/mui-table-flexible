@@ -129,7 +129,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     return (
         <div
             style={{...props.style, width: width || systemWidth}}
-            className={classes.root}
+            className={clsx(classes.root, props.className)}
             ref={ref}
         >
             <div
