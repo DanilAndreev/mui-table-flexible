@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import FlexibleTableRow from "../lib/moleculas/FlexibleTableRow/FlexibleTableRow";
 import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 
 export default function FlexibleTableAutomated() {
     const columns = [
@@ -25,6 +26,9 @@ export default function FlexibleTableAutomated() {
             <Grid item xs={12}>
                 <Box p={2}>
                     <Paper>
+                        <Box p={1}>
+                            <Typography variant={'h5'}> Flexible table automated </Typography>
+                        </Box>
                         <FlexibleTable
                             columns={columns}
                             disableAutoHeight
