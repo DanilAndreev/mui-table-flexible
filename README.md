@@ -1,73 +1,57 @@
 # mui-table-flexible
 ## Overview
-__mui-table-flexible__ - table processor, designed to create tables with resize handlers for big amount of data.
-
+__mui-table-flexible__ - table processor, designed to create tables with resize handlers for big amount of data.  
+![flexible table example](https://github.com/DanilAndreev/mui-table-flexible/blob/master/media/mui-table-flexible-example-simple.png)
 
 ## Getting started
 ### Installation
-Using __npm__: ```npm install mui-table-flexible```  
-Using __yarn__: ```yarn add mui-table-flexible```
+Using __npm__: 
+```
+npm install mui-table-flexible
+```  
+Using __yarn__: 
+```
+yarn add mui-table-flexible
+```
 ### Usage
 ```jsx
 import React from "react";
-import FlexibleTable from "../lib/organizms/FlexibleTable/FlexibleTable";
-import FlexibleTableCell from "../lib/moleculas/FlexibleTableCell/FlexibleTableCell";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import FlexibleTableRow from "../lib/moleculas/FlexibleTableRow/FlexibleTableRow";
-import Box from "@material-ui/core/Box";
+import {
+    FlexibleTable, 
+    FlexibleTableCell, 
+    FlexibleTableRow
+} from "@danilandreev/mui-table-flexible";
 
-export default function FlexibleTableAutomated() {
+
+export default function FlexibleTableExample() {
     const columns = [
-        <FlexibleTableCell defaultWidth={150} name={'hello'}>Hello</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={250} name={'darkness'}>darkness</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={210} name={'my'}>my</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={440} name={'old'}>old</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={230} name={'friend'}>friend</FlexibleTableCell>,
+        <FlexibleTableCell name={'hello'}>Hello</FlexibleTableCell>,
+        //  ...
     ];
 
     return (
-        <Grid container>
-            <Grid item xs={12}>
-                <Box p={2}>
-                    <Paper>
-                        <FlexibleTable
-                            columns={columns}
-                        >
-                            <FlexibleTableRow button>
-                                <FlexibleTableCell name={'hello'} button onClick={() => alert('Hello')}>
-                                    I've
-                                </FlexibleTableCell>
-                                <FlexibleTableCell name={'darkness'}>come</FlexibleTableCell>
-                                <FlexibleTableCell name={'my'}>to talk</FlexibleTableCell>
-                                <FlexibleTableCell name={'old'}>with you</FlexibleTableCell>
-                                <FlexibleTableCell name={'friend'}>again</FlexibleTableCell>
-                            </FlexibleTableRow>
-                            <FlexibleTableRow button>
-                                <FlexibleTableCell name={'hello'}>Because </FlexibleTableCell>
-                                <FlexibleTableCell name={'darkness'}>a</FlexibleTableCell>
-                                <FlexibleTableCell name={'my'}>vision</FlexibleTableCell>
-                                <FlexibleTableCell name={'old'}>softly</FlexibleTableCell>
-                                <FlexibleTableCell name={'friend'}>creeping</FlexibleTableCell>
-                            </FlexibleTableRow>
-                            <FlexibleTableRow button>
-                                <FlexibleTableCell name={'hello'}>Left</FlexibleTableCell>
-                                <FlexibleTableCell name={'darkness'}>its seeds</FlexibleTableCell>
-                                <FlexibleTableCell name={'my'}>while</FlexibleTableCell>
-                                <FlexibleTableCell name={'old'}>I was</FlexibleTableCell>
-                                <FlexibleTableCell name={'friend'}>sleeping</FlexibleTableCell>
-                            </FlexibleTableRow>
-                        </FlexibleTable>
-                    </Paper>
-                </Box>
-            </Grid>
-        </Grid>
+        <FlexibleTable
+            columns={columns}
+        >
+            <FlexibleTableRow>
+                <FlexibleTableCell name={'hello'}>I've</FlexibleTableCell>
+                 {/*...*/}
+            </FlexibleTableRow>
+            <FlexibleTableRow>
+                <FlexibleTableCell name={'hello'}>Because</FlexibleTableCell>
+                 {/*...*/}
+            </FlexibleTableRow>
+            <FlexibleTableRow>
+                <FlexibleTableCell name={'hello'}>Left</FlexibleTableCell>
+                 {/*...*/}
+            </FlexibleTableRow>
+        </FlexibleTable>
     );
 }
 ```
 ### Learn
-You can find example project in [this repository]().  
-Also, you can find more info in [wiki]().
+You can find __example project__ in [this repository](https://github.com/DanilAndreev/mui-table-flexible/tree/master/src/example).  
+Also, you can find __more info__ in [wiki](https://github.com/DanilAndreev/mui-table-flexible/wiki).
 
 ## Author
-Danil Andreev | danssg08@gmail.com
+Danil Andreev | danssg08@gmail.com | https://github.com/DanilAndreev
