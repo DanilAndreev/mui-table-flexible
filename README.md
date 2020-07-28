@@ -2,10 +2,11 @@
 #### General
 [![npm version](https://badge.fury.io/js/%40danilandreev%2Fmui-table-flexible.svg)](https://badge.fury.io/js/%40danilandreev%2Fmui-table-flexible)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danilandreev/mui-table-flexible/publish-npm)
-![David](https://img.shields.io/david/danilandreev/mui-table-flexible)
 ![npm (scoped)](https://img.shields.io/npm/v/@danilandreev/mui-table-flexible)
 ![GitHub issues](https://img.shields.io/github/issues/danilandreev/mui-table-flexible)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/danilandreev/mui-table-flexible)
+#### Dependencies
+![David](https://img.shields.io/david/danilandreev/mui-table-flexible)
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/danilandreev/mui-table-flexible/@material-ui/core)
 
 #### Social
