@@ -130,4 +130,5 @@ export default function FlexibleTable(props: FlexibleTableProps) {
     );
 }
 
+// @ts-ignore
 export const useResizeData = () => React.useContext(FlexibleTableContext);
