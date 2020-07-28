@@ -1,6 +1,6 @@
 {
   "name": "@danilandreev/mui-table-flexible",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "description": "mui-table-flexible - is a powerful table processor, designed to create tables with resize handlers for big amount of data.",
   "keywords": ["material-design", "material-ui", "table", "resizeable", "flexible", "processor", "react", "reactjs", "typescript"],
@@ -48,7 +48,7 @@
   "files": [
     "dist/*"
   ],
-  "main": "dist/index.tsx",
+  "main": "dist/index.js",
   "eslintConfig": {
     "extends": "react-app"
   },

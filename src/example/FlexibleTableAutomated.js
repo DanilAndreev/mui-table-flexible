@@ -6,9 +6,9 @@
 import React from "react";
 
 //MuiFlexibleTable components
-import FlexibleTable from "../lib/organizms/FlexibleTable/FlexibleTable";
-import FlexibleTableCell from "../lib/moleculas/FlexibleTableCell/FlexibleTableCell";
-import FlexibleTableRow from "../lib/moleculas/FlexibleTableRow/FlexibleTableRow";
+import FlexibleTable from "../lib/organizms/FlexibleTable";
+import FlexibleTableCell from "../lib/moleculas/FlexibleTableCell";
+import FlexibleTableRow from "../lib/moleculas/FlexibleTableRow";
 
 //MaterialUI Components
 import Paper from "@material-ui/core/Paper";
