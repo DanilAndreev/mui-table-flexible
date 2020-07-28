@@ -18,6 +18,7 @@
     "url": "https://github.com/DanilAndreev/mui-table-flexible/issues",
     "email": "danssg08@gmail.com"
   },
+  "homepage": "https://github.com/DanilAndreev/mui-table-flexible/wiki",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
