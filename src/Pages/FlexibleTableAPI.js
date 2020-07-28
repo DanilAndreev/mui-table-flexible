@@ -4,9 +4,15 @@
  */
 
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import FlexibleTableApiPath from "./../Markdown/FlexibleTable-API.md"
-import marked from "marked"
+import {H1, H2, H4} from "../Components/Headers";
+import Code from "../Components/Code";
+
+const imports = `
+import {FlexibleTable} from "@danilandreev/mui-table-flexible";
+//or 
+import FlexibleTable from "@danilandreev/mui-table-flexible/dist/organizms/FlexibleTable";
+`;
 
 export default function FlexibleTableAPI() {
     const [markdown, setMarkdown] = React.useState('');
@@ -18,7 +24,10 @@ export default function FlexibleTableAPI() {
     return (
         <React.Fragment>
             {/*<ReactMarkdown source={markdown}/>*/}
-            <div dangerouslySetInnerHTML={{__html: marked(markdown)}} />
+            <H1>FlexibleTable API</H1>
+            <H4>The API documentation of the FlexibleTable React component. Learn more about the props and the CSS customization points.</H4>
+            <H2>Import</H2>
+            <Code>{imports.trim()}</Code>
         </React.Fragment>
     );
 }
