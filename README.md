@@ -1,7 +1,7 @@
 <div align="center">
     <h1>mui-table-flexible</h1>
     <img
-        src="./logo256.png"
+        src="https://github.com/DanilAndreev/mui-table-flexible/blob/master/logo256.png"
         alt="logo"
         height="128"
         width="128"
