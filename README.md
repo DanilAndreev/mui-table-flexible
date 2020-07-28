@@ -45,7 +45,7 @@ import {
 
 export default function FlexibleTableExample() {
     const columns = [
-        <FlexibleTableCell name={'hello'}>Hello</FlexibleTableCell>,
+        <FlexibleTableCell name={'hello'} key={'table-col-hello'}>Hello</FlexibleTableCell>,
         //  ...
     ];
 
