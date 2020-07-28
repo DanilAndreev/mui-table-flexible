@@ -3,4 +3,4 @@
  *  Copyright (c) 2020.
  */
 
-export {default as FlexibleTable, useResizeData} from "./FlexibleTable/FlexibleTable"
+export {default as FlexibleTable, useResizeData} from "./FlexibleTable"

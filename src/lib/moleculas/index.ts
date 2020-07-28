@@ -3,5 +3,6 @@
  *  Copyright (c) 2020.
  */
 
-export {default as FlexibleTableCell} from "./FlexibleTableCell/FlexibleTableCell";
+export {default as FlexibleTableCell} from "./FlexibleTableCell";
+export {default as FlexibleTableRow} from "./FlexibleTableRow";
 
