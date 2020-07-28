@@ -6,7 +6,7 @@
 import React from "react";
 import {useStyles} from "./styles";
 import FlexibleTableRow from "../../moleculas/FlexibleTableRow";
-import {Stylable, ResizeData} from "../../interfaces";
+import {Stylable, ResizeData, ComponentBase} from "../../interfaces";
 import clsx from "clsx";
 
 export interface FlexibleContext {
@@ -24,7 +24,7 @@ const FlexibleTableContext = React.createContext<FlexibleContext>({
 });
 
 export interface FlexibleTableProps
-    extends Stylable {
+    extends Stylable, ComponentBase {
     /**
      * columns - array of elements to configure table layout.
      * @type array
@@ -54,6 +54,7 @@ export default function FlexibleTable(props: FlexibleTableProps) {
         disableAutoHeight,
         dense,
         children,
+        ref,
     } = props;
     /**
      * sizes - object, created to store each column width.
@@ -90,6 +91,10 @@ export default function FlexibleTable(props: FlexibleTableProps) {
     React.useEffect(() => {
         absoluteContainer.current && setHeight(absoluteContainer.current.clientHeight + 20);
     }, [absoluteContainer]);
+
+    React.useEffect(() => {
+        if (ref) ref.current = container.current;
+    }, [container]);
 
     function onSystemResize(name: string, width: number): void {
         setSizes((prev: any) => ({...prev, [name]: width}));

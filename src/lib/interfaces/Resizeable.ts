@@ -6,7 +6,7 @@
 export interface Resizeable {
     /**
      * width - width of the cell, if you want control it by yourself.
-     * @type: {number}
+     * @type number
      */
     width?: number,
     /**

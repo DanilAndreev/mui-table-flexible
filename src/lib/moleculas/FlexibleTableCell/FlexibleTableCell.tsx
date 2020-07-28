@@ -5,7 +5,7 @@
 
 import React from "react";
 import {useStyles} from "./styles";
-import {ButtonClickable, Resizeable, Stylable} from "../../interfaces";
+import {ButtonClickable, Resizeable, Stylable, ComponentBase} from "../../interfaces";
 import {useResizeData} from "../../organizms/FlexibleTable/FlexibleTable";
 import clsx from "clsx";
 
@@ -16,10 +16,10 @@ import clsx from "clsx";
 const MIN_CELL_WIDTH: number = 40;
 
 export interface FlexibleTableCellProps
-    extends Resizeable, ButtonClickable, Stylable {
+    extends Resizeable, ButtonClickable, Stylable, ComponentBase {
     /**
      * name - the name of the columns, used as key.
-     * @type: {string}
+     * @type string
      */
     name: string,
     /**
@@ -29,15 +29,14 @@ export interface FlexibleTableCellProps
     defaultWidth?: number,
     /**
      * disableOverflowHidden - if true, cell will not have overflow: hidden style.
-     * @type: boolean
+     * @type boolean
      */
     disableOverflowHidden?: boolean,
     /**
      * The content of element
-     * @type: node
+     * @type node
      */
     children?: any,
-    ref?: any,
 }
 
 export default function FlexibleTableCell(props: FlexibleTableCellProps) {

@@ -6,13 +6,13 @@
 import React from "react";
 import {useStyles} from "./styles";
 import clsx from "clsx";
-import {ButtonClickable, Stylable} from "../../interfaces";
+import {ButtonClickable, ComponentBase, Stylable} from "../../interfaces";
 
 export interface FlexibleTableRowProps
-    extends ButtonClickable, Stylable {
+    extends ButtonClickable, Stylable, ComponentBase {
     /**
      * The content of element
-     * @type: node
+     * @type node
      */
     children?: any,
     /**
@@ -29,6 +29,7 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
         onDoubleClick,
         children,
         resizeable,
+        ref,
     } = props;
     const classes = {...useStyles(), ...props.classes};
 
@@ -42,6 +43,7 @@ export default function FlexibleTableRow(props: FlexibleTableRowProps) {
             style={props.style}
             onClick={onClick}
             onDoubleClick={onDoubleClick}
+            ref={ref}
         >
             {!resizeable ? children : children.map((cell: any) =>
                 React.cloneElement(cell, {resizeable}))
