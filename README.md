@@ -1,4 +1,13 @@
-# mui-table-flexible
+<div align="center">
+    <h1>mui-table-flexible</h1>
+    <img
+        src="./logo256.png"
+        alt="logo"
+        height="128"
+        width="128"
+    />
+</div>
+
 #### General
 [![npm version](https://badge.fury.io/js/%40danilandreev%2Fmui-table-flexible.svg)](https://badge.fury.io/js/%40danilandreev%2Fmui-table-flexible)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/danilandreev/mui-table-flexible/publish-npm)
