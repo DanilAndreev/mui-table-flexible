@@ -19,11 +19,11 @@ import Typography from "@material-ui/core/Typography";
 
 export default function FlexibleTableContained() {
     const columns = [
-        <FlexibleTableCell defaultWidth={150} name={'hello'}>Hello</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={250} name={'darkness'}>darkness</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={210} name={'my'}>my</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={440} name={'old'}>old</FlexibleTableCell>,
-        <FlexibleTableCell defaultWidth={230} name={'friend'}>friend</FlexibleTableCell>,
+        <FlexibleTableCell defaultWidth={150} name={'hello'} key={'automated-table-col-hello'}>Hello</FlexibleTableCell>,
+        <FlexibleTableCell defaultWidth={250} name={'darkness'} key={'automated-table-col-darkness'}>darkness</FlexibleTableCell>,
+        <FlexibleTableCell defaultWidth={210} name={'my'} key={'automated-table-col-my'}>my</FlexibleTableCell>,
+        <FlexibleTableCell defaultWidth={440} name={'old'} key={'automated-table-col-old'}>old</FlexibleTableCell>,
+        <FlexibleTableCell defaultWidth={230} name={'friend'} key={'automated-table-col-friend'}>friend</FlexibleTableCell>,
     ];
 
     return (

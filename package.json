@@ -3,7 +3,17 @@
   "version": "0.0.6",
   "private": false,
   "description": "mui-table-flexible - is a powerful table processor, designed to create tables with resize handlers for big amount of data.",
-  "keywords": ["material-design", "material-ui", "table", "resizeable", "flexible", "processor", "react", "reactjs", "typescript"],
+  "keywords": [
+    "material-design",
+    "material-ui",
+    "table",
+    "resizeable",
+    "flexible",
+    "processor",
+    "react",
+    "reactjs",
+    "typescript"
+  ],
   "author": {
     "name": "Andrieiev Danil",
     "email": "danssg08@gmail.com",
@@ -25,7 +35,6 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "babel-plugin-typescript-to-proptypes": "^1.4.0",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -34,10 +43,12 @@
     "typescript": "~3.7.2"
   },
   "devDependencies": {
+    "typedoc": "^0.17.8",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0"
+    "@types/jest": "^24.0.0",
+    "babel-plugin-typescript-to-proptypes": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
