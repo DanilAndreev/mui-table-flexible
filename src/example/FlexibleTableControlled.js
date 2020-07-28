@@ -26,15 +26,25 @@ export default function FlexibleTableControlled() {
 
     const columns = [
         <FlexibleTableCell defaultWidth={150} name={'hello'} onResize={onCellResize}
-                           width={sizes.hello}>Hello</FlexibleTableCell>,
+                           width={sizes.hello} key={'automated-table-col-hello'}>
+            Hello
+        </FlexibleTableCell>,
         <FlexibleTableCell defaultWidth={250} name={'darkness'} onResize={onCellResize}
-                           width={sizes.darkness}>darkness</FlexibleTableCell>,
+                           width={sizes.darkness} key={'automated-table-col-darkness'}>
+            darkness
+        </FlexibleTableCell>,
         <FlexibleTableCell defaultWidth={210} name={'my'} onResize={onCellResize}
-                           width={sizes.my}>my</FlexibleTableCell>,
+                           width={sizes.my} key={'automated-table-col-my'}>
+            my
+        </FlexibleTableCell>,
         <FlexibleTableCell defaultWidth={440} name={'old'} onResize={onCellResize}
-                           width={sizes.old}>old</FlexibleTableCell>,
+                           width={sizes.old} key={'automated-table-col-old'}>
+            old
+        </FlexibleTableCell>,
         <FlexibleTableCell defaultWidth={230} name={'friend'} onResize={onCellResize}
-                           width={sizes.friend}>friend</FlexibleTableCell>,
+                           width={sizes.friend} key={'automated-table-col-friend'}>
+            friend
+        </FlexibleTableCell>,
     ];
 
     return (
@@ -55,24 +65,25 @@ export default function FlexibleTableControlled() {
                                 >
                                     I've
                                 </FlexibleTableCell>
-                                <FlexibleTableCell name={'darkness'}  width={sizes.darkness}>come</FlexibleTableCell>
-                                <FlexibleTableCell name={'my'}  width={sizes.my}>to talk</FlexibleTableCell>
-                                <FlexibleTableCell name={'old'}  width={sizes.old}>with you</FlexibleTableCell>
-                                <FlexibleTableCell name={'friend'}  width={sizes.friend}>again</FlexibleTableCell>
+                                <FlexibleTableCell name={'darkness'} width={sizes.darkness}>come</FlexibleTableCell>
+                                <FlexibleTableCell name={'my'} width={sizes.my}>to talk</FlexibleTableCell>
+                                <FlexibleTableCell name={'old'} width={sizes.old}>with you</FlexibleTableCell>
+                                <FlexibleTableCell name={'friend'} width={sizes.friend}>again</FlexibleTableCell>
                             </FlexibleTableRow>
                             <FlexibleTableRow button onDoubleClick={() => alert('Line double clicked')}>
-                                <FlexibleTableCell name={'hello'}  width={sizes.hello}>Because </FlexibleTableCell>
-                                <FlexibleTableCell name={'darkness'}  width={sizes.darkness}>a</FlexibleTableCell>
-                                <FlexibleTableCell name={'my'}  width={sizes.my}>vision</FlexibleTableCell>
-                                <FlexibleTableCell name={'old'}  width={sizes.old}>softly</FlexibleTableCell>
-                                <FlexibleTableCell name={'friend'}  width={sizes.friend}>creeping</FlexibleTableCell>
+                                <FlexibleTableCell name={'hello'} width={sizes.hello}>Because </FlexibleTableCell>
+                                <FlexibleTableCell name={'darkness'} width={sizes.darkness}>a</FlexibleTableCell>
+                                <FlexibleTableCell name={'my'} width={sizes.my}>vision</FlexibleTableCell>
+                                <FlexibleTableCell name={'old'} width={sizes.old}>softly</FlexibleTableCell>
+                                <FlexibleTableCell name={'friend'} width={sizes.friend}>creeping</FlexibleTableCell>
                             </FlexibleTableRow>
                             <FlexibleTableRow button>
-                                <FlexibleTableCell name={'hello'}  width={sizes.hello}>Left</FlexibleTableCell>
-                                <FlexibleTableCell name={'darkness'}  width={sizes.darkness}>its seeds</FlexibleTableCell>
-                                <FlexibleTableCell name={'my'}  width={sizes.my}>while</FlexibleTableCell>
-                                <FlexibleTableCell name={'old'}  width={sizes.old}>I was</FlexibleTableCell>
-                                <FlexibleTableCell name={'friend'}  width={sizes.friend}>sleeping</FlexibleTableCell>
+                                <FlexibleTableCell name={'hello'} width={sizes.hello}>Left</FlexibleTableCell>
+                                <FlexibleTableCell name={'darkness'} width={sizes.darkness}>its
+                                    seeds</FlexibleTableCell>
+                                <FlexibleTableCell name={'my'} width={sizes.my}>while</FlexibleTableCell>
+                                <FlexibleTableCell name={'old'} width={sizes.old}>I was</FlexibleTableCell>
+                                <FlexibleTableCell name={'friend'} width={sizes.friend}>sleeping</FlexibleTableCell>
                             </FlexibleTableRow>
                         </FlexibleTable>
                     </Paper>
