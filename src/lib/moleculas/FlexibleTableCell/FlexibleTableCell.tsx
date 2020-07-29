@@ -178,7 +178,6 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
                 <div
                     className={classes.handle}
                     onMouseDown={handleResizeMouseDown}
-                    //onTouchStart={handleResizeMouseDown}
                     ref={resizeHandle}
                 >
                     <div className={classes.handleTarget}/>
