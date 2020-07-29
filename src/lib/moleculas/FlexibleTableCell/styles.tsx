@@ -38,6 +38,12 @@ export const useStyles = makeStyles(theme => ({
         "&:hover": {
             display: "block",
         },
+        [theme.breakpoints.down("md")]: {
+            right: "-20px",
+            left: "-20px",
+            bottom: "-20px",
+            display: "block",
+        },
     },
     content: {
         flexGrow: 1,
