@@ -8,6 +8,7 @@ import {useStyles} from "./styles";
 import {ButtonClickable, Resizeable, Stylable, ComponentBase} from "../../interfaces";
 import {useResizeData} from "../../organizms/FlexibleTable/FlexibleTable";
 import clsx from "clsx";
+import {instanceOf} from "prop-types";
 
 /**
  * MIN_CELL_WIDTH - minimal resizeable width of cell in pixels
@@ -56,6 +57,7 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     } = props;
     const {getResizeData, dense} = useResizeData();
     const {onSystemResize, systemWidth} = getResizeData(name);
+    const resizeHandle = React.useRef<HTMLDivElement | null>(null);
 
     interface Settings {
         mouseX: number;
@@ -69,12 +71,24 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     }, [])
 
     React.useEffect(() => {
+        if (resizeHandle.current) {
+            resizeHandle.current.addEventListener("touchstart", handleResizeMouseDown, {passive: false});
+        }
+    }, [resizeHandle])
+
+    React.useEffect(() => {
         if (settings) {
-            window.addEventListener("mouseup", removeResizeListeners);
-            window.addEventListener("mousemove", handleResizeMouseMove);
+            window.addEventListener("mouseup", removeResizeListeners, {passive: false});
+            window.addEventListener("touchend", removeResizeListeners, {passive: false});
+            window.addEventListener("touchcancel", removeResizeListeners, {passive: false});
+            window.addEventListener("mousemove", handleResizeMouseMove, {passive: false});
+            window.addEventListener("touchmove", handleResizeMouseMove, {passive: false});
         } else {
             window.removeEventListener("mousemove", handleResizeMouseMove);
+            window.removeEventListener("touchmove", handleResizeMouseMove);
             window.removeEventListener("mouseup", removeResizeListeners);
+            window.removeEventListener("touchend", removeResizeListeners);
+            window.removeEventListener("touchcancel", removeResizeListeners);
         }
     }, [settings]);
 
@@ -84,9 +98,16 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseDown(event: any) {
+        event.preventDefault();
+        event.stopPropagation();
+        let clientX = event.clientX;
+        if (event instanceof TouchEvent || event.nativeEvent instanceof TouchEvent) {
+            clientX = +event.touches[0].clientX;
+        }
+
         setSettings({
             width: width || systemWidth || defaultWidth,
-            mouseX: +event.clientX,
+            mouseX: clientX,
         });
     }
 
@@ -98,7 +119,10 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
     function removeResizeListeners() {
         setSettings(null);
         window.removeEventListener("mousemove", handleResizeMouseMove);
+        window.removeEventListener("touchmove", handleResizeMouseMove);
         window.removeEventListener("mouseup", removeResizeListeners);
+        window.removeEventListener("touchend", removeResizeListeners);
+        window.removeEventListener("touchcancel", removeResizeListeners);
     }
 
     /**
@@ -107,8 +131,18 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
      * @param event
      */
     function handleResizeMouseMove(event: any) {
+        try {
+            event.stopPropagation();
+            event.preventDefault();
+        } catch (error) {
+        }
         if (!settings) return null;
-        let newWidth: number = settings.width - (settings.mouseX - (event.clientX));
+
+        let clientX = event.clientX;
+        if (event instanceof TouchEvent || event.nativeEvent instanceof TouchEvent) {
+            clientX = +event.touches[0].clientX;
+        }
+        let newWidth: number = settings.width - (settings.mouseX - (clientX));
         if (newWidth < MIN_CELL_WIDTH) {
             newWidth = MIN_CELL_WIDTH;
         }
@@ -144,6 +178,8 @@ export default function FlexibleTableCell(props: FlexibleTableCellProps) {
                 <div
                     className={classes.handle}
                     onMouseDown={handleResizeMouseDown}
+                    //onTouchStart={handleResizeMouseDown}
+                    ref={resizeHandle}
                 >
                     <div className={classes.handleTarget}/>
                 </div>
