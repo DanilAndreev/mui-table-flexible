@@ -27,7 +27,7 @@ export default function FlexibleTableAPI() {
             <H1>FlexibleTable API</H1>
             <H4>The API documentation of the FlexibleTable React component. Learn more about the props and the CSS customization points.</H4>
             <H2>Import</H2>
-            <Code>{imports.trim()}</Code>
+            <Code theme={"darcula"}>{imports.trim()}</Code>
         </React.Fragment>
     );
 }

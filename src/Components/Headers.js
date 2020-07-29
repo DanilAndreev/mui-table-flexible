@@ -9,7 +9,7 @@ import Divider from "@material-ui/core/Divider";
 
 export function H1({children}) {
     return (
-        <Typography variant={"h1"}>
+        <Typography variant={"h2"}>
             {children}
             <Divider />
         </Typography>
@@ -18,7 +18,7 @@ export function H1({children}) {
 
 export function H2({children}) {
     return (
-        <Typography variant={"h2"}>
+        <Typography variant={"h3"}>
             {children}
             <Divider />
         </Typography>
@@ -27,7 +27,7 @@ export function H2({children}) {
 
 export function H3({children}) {
     return (
-        <Typography variant={"h3"}>
+        <Typography variant={"h4"}>
             {children}
             <Divider />
         </Typography>
@@ -36,21 +36,13 @@ export function H3({children}) {
 
 export function H4({children}) {
     return (
-        <Typography variant={"h4"}>
-            {children}
-        </Typography>
-    );
-}
-
-export function H5({children}) {
-    return (
         <Typography variant={"h5"}>
             {children}
         </Typography>
     );
 }
 
-export function H6({children}) {
+export function H5({children}) {
     return (
         <Typography variant={"h6"}>
             {children}
